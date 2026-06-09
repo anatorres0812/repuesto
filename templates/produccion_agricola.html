@@ -1,0 +1,694 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- ===== EXPERIENCIA ===== -->
+<section class="py-10 bg-white">
+
+    <div class="max-w-5xl mx-auto px-8 text-center">
+
+        <!-- CONTADOR -->
+        <div class="mb-10">
+
+            <h2 class="text-8xl font-bold text-[#556B2F] tracking-widest">
+                10+
+            </h2>
+
+            <p class="text-[#556B2F] text-xl tracking-[0.4em] mt-4">
+                AÑOS DE EXPERIENCIA
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===== TEXTO ===== -->
+<section class="pb-6 bg-white">
+
+    <div class="max-w-5xl mx-auto px-8">
+
+        <p class="text-gray-700 text-base text-justify leading-relaxed">
+
+            Nuestra asociación agrícola cuenta con más de 10 años de experiencia en el cultivo de palta Hass en Alto Larán – Huamanpalí. Durante esta década, hemos trabajado con compromiso y dedicación, implementando Buenas Prácticas Agrícolas, control de calidad y sistemas de trazabilidad para garantizar productos de alta calidad destinados tanto al mercado local como a la exportación.
+
+            <br><br>
+
+            A lo largo de estos años, hemos incorporado innovación tecnológica, prácticas sostenibles y mejoras productivas que han permitido optimizar el rendimiento del cultivo, proteger el medio ambiente y fortalecer la competitividad de nuestros asociados, generando desarrollo económico y oportunidades para la comunidad.
+
+            <br><br>
+
+            El cultivo de palta en Alto Larán – Huamanpalí se ha convertido en una alternativa agrícola importante gracias a las condiciones favorables de la zona, como su clima cálido, la buena radiación solar y la posibilidad de implementar riego tecnificado. Estas características permiten el adecuado desarrollo de distintas variedades como Hass, Zutano y Fuerte, favoreciendo la producción de frutos de alta calidad que cumplen con los estándares del mercado nacional e internacional.
+
+            <br><br>
+
+            Las variedades de palta producidas en la zona son valoradas por su sabor, textura y demanda en el mercado, especialmente la palta Hass, reconocida por su alta aceptación en el comercio exterior. Sin embargo, el éxito del cultivo depende de un manejo adecuado del agua, del suelo y del control de plagas, así como del uso de buenas prácticas agrícolas que garanticen una producción sostenible y competitiva.
+
+            <br><br>
+
+            Este cultivo también representa una oportunidad de desarrollo para las asociaciones agrícolas de la zona, ya que fomenta la generación de empleo y el crecimiento económico local. Asimismo, al estar orientado tanto al mercado nacional como internacional, permite a los productores incrementar sus ingresos y mejorar su calidad de vida.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ===== VARIEDADES ===== -->
+<section class="pt-6 pb-16 px-8 bg-white">
+
+    <div class="max-w-5xl mx-auto text-center">
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+            <!-- HASS -->
+            <div onclick="abrirModal('{{ url_for('static', filename='image/productos/fichatecnica1.png') }}')"
+                class="relative bg-white rounded-xl overflow-hidden border border-[#556B2F]
+                       shadow-md hover:shadow-2xl transition duration-300 group
+                       w-full h-[340px] cursor-pointer">
+
+                <div class="w-full h-[260px] overflow-hidden">
+                    <img src="{{ url_for('static', filename='image/productos/hass.png') }}"
+                        alt="Palta Hass"
+                        class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-300">
+                </div>
+
+                <div class="absolute inset-0 bg-[#556B2F]/70 flex items-center justify-center
+                            opacity-0 group-hover:opacity-100 transition duration-300">
+
+                    <h3 class="text-white text-lg font-bold">
+                        Palta Hass
+                    </h3>
+
+                </div>
+
+            </div>
+
+            <!-- FUERTE -->
+            <div onclick="abrirModal('{{ url_for('static', filename='image/productos/fichatecnica2.png') }}')"
+                class="relative bg-white rounded-xl overflow-hidden border border-[#556B2F]
+                       shadow-md hover:shadow-2xl transition duration-300 group
+                       w-full h-[340px] cursor-pointer">
+
+                <div class="w-full h-[260px] overflow-hidden">
+                    <img src="{{ url_for('static', filename='image/productos/fuerte.png') }}"
+                        alt="Palta Fuerte"
+                        class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-300">
+                </div>
+
+                <div class="absolute inset-0 bg-[#556B2F]/70 flex items-center justify-center
+                            opacity-0 group-hover:opacity-100 transition duration-300">
+
+                    <h3 class="text-white text-lg font-bold">
+                        Palta Fuerte
+                    </h3>
+
+                </div>
+
+            </div>
+
+            <!-- ZUTANO -->
+            <div onclick="abrirModal('{{ url_for('static', filename='image/productos/fichatecnica3.png') }}')"
+                class="relative bg-white rounded-xl overflow-hidden border border-[#556B2F]
+                       shadow-md hover:shadow-2xl transition duration-300 group
+                       w-full h-[340px] cursor-pointer">
+
+                <div class="w-full h-[260px] overflow-hidden">
+                    <img src="{{ url_for('static', filename='image/productos/zutano.png') }}"
+                        alt="Palta Zutano"
+                        class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-300">
+                </div>
+
+                <div class="absolute inset-0 bg-[#556B2F]/70 flex items-center justify-center
+                            opacity-0 group-hover:opacity-100 transition duration-300">
+
+                    <h3 class="text-white text-lg font-bold">
+                        Palta Zutano
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===== MODAL FICHA TÉCNICA ===== -->
+<div id="modalFicha"
+     style="
+        display:none;
+        position:fixed;
+        top:0;
+        left:0;
+        width:100vw;
+        height:100vh;
+        background:rgba(0,0,0,0.65);
+        z-index:9999;
+        justify-content:center;
+        align-items:center;
+     "
+     onclick="cerrarModal()">
+
+    <img id="imgFicha"
+         src=""
+         alt="Ficha técnica"
+         onclick="event.stopPropagation()"
+         style="
+            max-width:85%;
+            max-height:90vh;
+            object-fit:contain;
+            border-radius:12px;
+            box-shadow:0 20px 40px rgba(0,0,0,.35);
+         ">
+
+</div>
+
+<script>
+function abrirModal(rutaImagen) {
+    document.getElementById("imgFicha").src = rutaImagen;
+    document.getElementById("modalFicha").style.display = "flex";
+}
+
+function cerrarModal() {
+    document.getElementById("modalFicha").style.display = "none";
+}
+</script>
+
+<!-- ===== PROCESOS AGRÍCOLAS ===== -->
+<section class="py-20" style="background-color:#eef2e8;">
+
+    <div class="max-w-7xl mx-auto px-6 md:px-16">
+
+        <!-- LEMA -->
+        <h2 class="text-2xl md:text-5xl font-bold text-center text-[#556B2F] tracking-wide mb-9">
+            “Calidad que nace del campo”
+        </h2>
+
+        <!-- TARJETAS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+            <!-- BPA -->
+            <div class="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300">
+
+                <img src="{{ url_for('static', filename='icons/bpa.png') }}"
+                    alt="BPA"
+                    class="w-16 h-16 mx-auto mb-5 object-contain">
+
+                <h3 class="text-2xl font-semibold mb-4 text-gray-800">
+                    BPA
+                </h3>
+
+                <p class="text-sm text-gray-600 text-justify">
+                    Las Buenas Prácticas Agrícolas son un conjunto de técnicas que aseguran una producción sostenible y segura, mediante el adecuado manejo del agua, del suelo y el uso responsable de insumos.
+                </p>
+
+            </div>
+
+            <!-- CONTROL DE CALIDAD -->
+            <div class="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300">
+
+                <img src="{{ url_for('static', filename='icons/controldecalidad.png') }}"
+                    alt="Control de calidad"
+                    class="w-16 h-16 mx-auto mb-5 object-contain">
+
+                <h3 class="text-2xl font-semibold mb-4 text-gray-800">
+                    Control de calidad
+                </h3>
+
+                <p class="text-sm text-gray-600 text-justify">
+                    Verificamos que la palta cumpla con estándares de tamaño, madurez y apariencia exigidos por el mercado.
+                </p>
+
+            </div>
+
+            <!-- TRAZABILIDAD -->
+            <div class="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300">
+
+                <img src="{{ url_for('static', filename='icons/trazabilidad.png') }}"
+                    alt="Trazabilidad"
+                    class="w-16 h-16 mx-auto mb-5 object-contain">
+
+                <h3 class="text-2xl font-semibold mb-4 text-gray-800">
+                    Trazabilidad
+                </h3>
+
+                <p class="text-sm text-gray-600 text-justify">
+                    Registramos todo el proceso productivo desde la siembra hasta la comercialización, garantizando confianza y seguridad.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===== DESARROLLO AGRÍCOLA ===== -->
+<section class="py-24 bg-white">
+
+    <div class="max-w-6xl mx-auto px-8">
+
+        <!-- TÍTULO -->
+        <h2 class="text-3xl font-bold text-center text-[#556B2F] tracking-wide mb-10">
+            “Impulsando el crecimiento agrícola con compromiso y tecnología”
+        </h2>
+
+        <!-- ===== CARRUSEL DESARROLLO AGRÍCOLA ===== -->
+        <div class="flex justify-center mb-12">
+
+            <div style="position:relative; width:100%; max-width:900px;">
+
+                <!-- IMAGEN -->
+                <img id="carruselAgricola"
+                    src="{{ url_for('static', filename='image/campo/campo5.jpg') }}"
+                    alt="Desarrollo Agrícola"
+                    style="
+                        width:100%;
+                        height:400px;
+                        object-fit:cover;
+                        border-radius:24px;
+                        box-shadow:0 10px 25px rgba(0,0,0,.20);
+                    ">
+
+                <!-- FLECHA IZQUIERDA -->
+                <button onclick="anteriorImagen()"
+                        type="button"
+                        style="
+                            position:absolute;
+                            left:25px;
+                            bottom:25px;
+                            width:42px;
+                            height:42px;
+                            border:none;
+                            border-radius:50%;
+                            background:#758f48;
+                            color:white;
+                            font-size:24px;
+                            font-weight:bold;
+                            cursor:pointer;
+                            z-index:9999;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                        ">
+                    ‹
+                </button>
+
+                <!-- FLECHA DERECHA -->
+                <button onclick="siguienteImagen()"
+                        type="button"
+                        style="
+                            position:absolute;
+                            right:25px;
+                            bottom:25px;
+                            width:42px;
+                            height:42px;
+                            border:none;
+                            border-radius:50%;
+                            background:#758f48;
+                            color:white;
+                            font-size:24px;
+                            font-weight:bold;
+                            cursor:pointer;
+                            z-index:9999;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                        ">
+                    ›
+                </button>
+
+            </div>
+
+        </div>
+
+        <script>
+        const imagenesAgricolas = [
+            "{{ url_for('static', filename='image/campo/cosechando3.jpg') }}",
+            "{{ url_for('static', filename='image/asociados/6.jpeg') }}",
+            "{{ url_for('static', filename='image/oficina/imagennueva2.jpeg') }}",
+            "{{ url_for('static', filename='image/capacitaciones/capacitacion16.jpeg') }}",
+            "{{ url_for('static', filename='image/otros/exportacion1.jpeg') }}",
+            "{{ url_for('static', filename='image/productos/producto4.jpg') }}"
+        ];
+
+        let indiceAgricola = 0;
+
+        function mostrarImagen() {
+            document.getElementById("carruselAgricola").src =
+                imagenesAgricolas[indiceAgricola];
+        }
+
+        function siguienteImagen() {
+            indiceAgricola = (indiceAgricola + 1) % imagenesAgricolas.length;
+            mostrarImagen();
+        }
+
+        function anteriorImagen() {
+            indiceAgricola =
+                (indiceAgricola - 1 + imagenesAgricolas.length) %
+                imagenesAgricolas.length;
+            mostrarImagen();
+        }
+
+        // Cambio automático cada 3 segundos
+        setInterval(() => {
+            siguienteImagen();
+        }, 3000);
+        </script>
+
+        <!-- TARJETAS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+            <!-- INNOVACIÓN -->
+            <div class="bg-white rounded-2xl p-10 text-center border border-[#556B2F]
+                        shadow-md hover:shadow-2xl hover:-translate-y-3 transition duration-300">
+
+                <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-[#556B2F]/10
+                            flex items-center justify-center text-3xl">
+                    🌱
+                </div>
+
+                <h3 class="text-2xl font-semibold text-[#556B2F] mb-6">
+                    Innovación
+                </h3>
+
+                <p class="text-gray-700 text-base text-justify leading-relaxed">
+                    La innovación en el cultivo de palta Hass implica el uso de nuevas tecnologías, sistemas de riego, fertilización precisa y herramientas de monitoreo que permiten optimizar el crecimiento de los árboles y la calidad del fruto.
+                </p>
+
+            </div>
+
+            <!-- SOSTENIBILIDAD -->
+            <div class="bg-white rounded-2xl p-10 text-center border border-[#556B2F]
+                        shadow-md hover:shadow-2xl hover:-translate-y-3 transition duration-300">
+
+                <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-[#556B2F]/10
+                            flex items-center justify-center text-3xl">
+                    🍃
+                </div>
+
+                <h3 class="text-2xl font-semibold text-[#556B2F] mb-6">
+                    Sostenibilidad
+                </h3>
+
+                <p class="text-gray-700 text-base text-justify leading-relaxed">
+                    La sostenibilidad se logra mediante prácticas responsables que cuidan el agua, el suelo y el ecosistema, asegurando que la producción sea rentable sin comprometer los recursos naturales.
+                </p>
+
+            </div>
+
+            <!-- MEJORA PRODUCTIVA -->
+            <div class="bg-white rounded-2xl p-10 text-center border border-[#556B2F]
+                        shadow-md hover:shadow-2xl hover:-translate-y-3 transition duration-300">
+
+                <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-[#556B2F]/10
+                            flex items-center justify-center text-3xl">
+                    📈
+                </div>
+
+                <h3 class="text-2xl font-semibold text-[#556B2F] mb-6">
+                    Mejora Productiva
+                </h3>
+
+                <p class="text-gray-700 text-base text-justify leading-relaxed">
+                    La mejora productiva se enfoca en la implementación de técnicas agronómicas, control de plagas, fertilización adecuada y manejo de la cosecha para incrementar el rendimiento y la calidad.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===== INSTITUCIONES ===== -->
+<section class="py-20" style="background-color:#eef2e8;">
+
+        <!-- TÍTULO -->
+        <h2 class="text-3xl font-bold text-center text-[#556B2F] tracking-wide mb-9">
+            Comprometidos con el desarrollo y bienestar de nuestros productores
+        </h2>
+
+        <!-- CONTEXTO -->
+        <p class="text-gray-700 text-lg max-w-4xl mx-auto leading-relaxed mb-16 text-center">
+            Nuestras alianzas estratégicas fortalecen el desarrollo de la asociación mediante el acceso a capacitación, asesoría técnica e innovación agrícola, contribuyendo al crecimiento sostenible y la competitividad de nuestros productores de palta Hass.
+        </p>
+
+        <!-- CARRUSEL -->
+        <div class="relative pt-8">
+
+            <div class="flex gap-10 animate-scroll whitespace-nowrap">
+
+                <!-- ===== PRIMER BLOQUE ===== -->
+
+                <!-- AGROIDEAS -->
+                <div class="min-w-[240px] bg-white border rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-3 transition duration-300 p-8 flex flex-col items-center">
+
+                    <img src="{{ url_for('static', filename='image/alianzas/agroideas.jpg') }}"
+                        class="w-36 h-24 object-contain mb-4">
+
+                    <h3 class="text-[#556B2F] font-semibold">
+                        AGROIDEAS
+                    </h3>
+
+                </div>
+
+                <!-- AGROMERCADO -->
+                <div class="min-w-[240px] bg-white border rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-3 transition duration-300 p-8 flex flex-col items-center">
+
+                    <img src="{{ url_for('static', filename='image/alianzas/agromercado.png') }}"
+                        class="w-36 h-24 object-contain mb-4">
+
+                    <h3 class="text-[#556B2F] font-semibold">
+                        AGROMERCADO
+                    </h3>
+
+                </div>
+
+                <!-- FONDO PERÚ -->
+                <div class="min-w-[240px] bg-white border rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-3 transition duration-300 p-8 flex flex-col items-center">
+
+                    <img src="{{ url_for('static', filename='image/alianzas/fondoperu.jpg') }}"
+                        class="w-36 h-24 object-contain mb-4">
+
+                    <h3 class="text-[#556B2F] font-semibold">
+                        FONDO PERÚ
+                    </h3>
+
+                </div>
+
+                <!-- INIA -->
+                <div class="min-w-[240px] bg-white border rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-3 transition duration-300 p-8 flex flex-col items-center">
+
+                    <img src="{{ url_for('static', filename='image/alianzas/inia.jpg') }}"
+                        class="w-36 h-24 object-contain mb-4">
+
+                    <h3 class="text-[#556B2F] font-semibold">
+                        INIA
+                    </h3>
+
+                </div>
+
+                <!-- SENASA -->
+                <div class="min-w-[240px] bg-white border rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-3 transition duration-300 p-8 flex flex-col items-center">
+
+                    <img src="{{ url_for('static', filename='image/alianzas/senasa.png') }}"
+                        class="w-36 h-24 object-contain mb-4">
+
+                    <h3 class="text-[#556B2F] font-semibold">
+                        SENASA
+                    </h3>
+
+                </div>
+
+                <!-- VALLE GRANDE -->
+                <div class="min-w-[240px] bg-white border rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-3 transition duration-300 p-8 flex flex-col items-center">
+
+                    <img src="{{ url_for('static', filename='image/alianzas/vg.png') }}"
+                        class="w-36 h-24 object-contain mb-4">
+
+                    <h3 class="text-[#556B2F] font-semibold">
+                        VALLE GRANDE
+                    </h3>
+
+                </div>
+
+                <!-- ===== SEGUNDO BLOQUE DUPLICADO ===== -->
+
+                <!-- AGROIDEAS -->
+                <div class="min-w-[240px] bg-white border rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-3 transition duration-300 p-8 flex flex-col items-center">
+
+                    <img src="{{ url_for('static', filename='image/alianzas/agroideas.jpg') }}"
+                        class="w-36 h-24 object-contain mb-4">
+
+                    <h3 class="text-[#556B2F] font-semibold">
+                        AGROIDEAS
+                    </h3>
+
+                </div>
+
+                <!-- AGROMERCADO -->
+                <div class="min-w-[240px] bg-white border rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-3 transition duration-300 p-8 flex flex-col items-center">
+
+                    <img src="{{ url_for('static', filename='image/alianzas/agromercado.png') }}"
+                        class="w-36 h-24 object-contain mb-4">
+
+                    <h3 class="text-[#556B2F] font-semibold">
+                        AGROMERCADO
+                    </h3>
+
+                </div>
+
+                <!-- FONDO PERÚ -->
+                <div class="min-w-[240px] bg-white border rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-3 transition duration-300 p-8 flex flex-col items-center">
+
+                    <img src="{{ url_for('static', filename='image/alianzas/fondoperu.jpg') }}"
+                        class="w-36 h-24 object-contain mb-4">
+
+                    <h3 class="text-[#556B2F] font-semibold">
+                        FONDO PERÚ
+                    </h3>
+
+                </div>
+
+                <!-- INIA -->
+                <div class="min-w-[240px] bg-white border rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-3 transition duration-300 p-8 flex flex-col items-center">
+
+                    <img src="{{ url_for('static', filename='image/alianzas/inia.jpg') }}"
+                        class="w-36 h-24 object-contain mb-4">
+
+                    <h3 class="text-[#556B2F] font-semibold">
+                        INIA
+                    </h3>
+
+                </div>
+
+                <!-- SENASA -->
+                <div class="min-w-[240px] bg-white border rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-3 transition duration-300 p-8 flex flex-col items-center">
+
+                    <img src="{{ url_for('static', filename='image/alianzas/senasa.png') }}"
+                        class="w-36 h-24 object-contain mb-4">
+
+                    <h3 class="text-[#556B2F] font-semibold">
+                        SENASA
+                    </h3>
+
+                </div>
+
+                <!-- VALLE GRANDE -->
+                <div class="min-w-[240px] bg-white border rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-3 transition duration-300 p-8 flex flex-col items-center">
+
+                    <img src="{{ url_for('static', filename='image/alianzas/vg.png') }}"
+                        class="w-36 h-24 object-contain mb-4">
+
+                    <h3 class="text-[#556B2F] font-semibold">
+                        VALLE GRANDE
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===== ANIMACIÓN ===== -->
+<style>
+
+@keyframes scroll {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+
+}
+
+.animate-scroll {
+
+    display: flex;
+    width: max-content;
+    animation: scroll 25s linear infinite;
+
+}
+
+</style>
+
+
+<!-- ===== REDES SOCIALES ===== -->
+<section class="py-8 pb-5 bg-white text-center">
+
+    <h2 class="text-2xl font-bold text-[#556B2F] mb-14 tracking-wide">
+        Nuestras redes sociales
+    </h2>
+
+    <div class="flex justify-center gap-28 flex-wrap">
+
+        <a href="#" class="flex flex-col items-center group">
+
+            <img src="{{ url_for('static', filename='icons/facebook.png') }}"
+                class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">
+                AAPHALPERU
+            </p>
+
+        </a>
+
+        <a href="https://www.instagram.com/aaphalperu/?hl=es"
+            target="_blank"
+            class="flex flex-col items-center group">
+
+            <img src="{{ url_for('static', filename='icons/instagram.png') }}"
+                class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">
+                AAPHALPERU
+            </p>
+
+        </a>
+
+        <a href="https://www.tiktok.com/@aaphalperu"
+            target="_blank"
+            class="flex flex-col items-center group">
+
+            <img src="{{ url_for('static', filename='icons/tiktok.png') }}"
+                class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">
+                AAPHALPERU
+            </p>
+
+        </a>
+
+        <a href="https://www.youtube.com/@Asociaci%C3%B3ndeAgricultoresenHuam"
+            target="_blank"
+            class="flex flex-col items-center group">
+
+            <img src="{{ url_for('static', filename='icons/youtube.png') }}"
+                class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">
+                AAPHALPERU
+            </p>
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

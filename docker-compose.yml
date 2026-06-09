@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+
+  # ===== BASE DE DATOS MYSQL =====
+  db:
+    image: mysql:8.0
+    container_name: aaphal_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234
+      MYSQL_DATABASE: aaphal_db
+      MYSQL_USER: aaphal_user
+      MYSQL_PASSWORD: aaphal1234
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  # ===== APLICACIÓN FLASK =====
+  web:
+    build: .
+    container_name: aaphal_web
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: aaphal_user
+      DB_PASSWORD: aaphal1234
+      DB_NAME: aaphal_db
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:

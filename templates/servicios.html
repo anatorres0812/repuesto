@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- ================= IMAGEN FONDO SERVICIOS ================= -->
+<section class="relative h-96 flex items-center justify-center overflow-hidden">
+
+    <img src="{{ url_for('static', filename='image/imagen1. 2026-04-27 083251.png') }}"
+         class="absolute inset-0 w-full h-full object-cover">
+
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <div class="relative z-10 text-center">
+        <h1 data-i18n="servicios" class="text-6xl font-semibold text-white tracking-widest">
+            SERVICIOS
+        </h1>
+    </div>
+
+</section>
+
+<!-- ================= CONTENIDO SERVICIOS ================= -->
+<section class="py-16 px-8 bg-white">
+    <div class="max-w-6xl mx-auto">
+        <p data-i18n="servicios_p1" class="text-gray-700 text-sm leading-relaxed text-justify">
+            Brindamos asesoría técnica especializada a nuestros productores, orientada a mejorar el manejo del cultivo de palta Hass. A través de este servicio, se proporciona acompañamiento en campo, recomendaciones agronómicas y soluciones prácticas que permiten optimizar la producción y la calidad del fruto.
+            <br><br>
+            Asimismo, desarrollamos capacitaciones agrícolas continuas, con el objetivo de fortalecer los conocimientos y habilidades de nuestros asociados. Estas capacitaciones permiten la adopción de nuevas técnicas, el uso adecuado de insumos y la aplicación de buenas prácticas agrícolas.
+            <br><br>
+            Además, promovemos diversas actividades para nuestros asociados que fomentan la integración, el trabajo en equipo y el desarrollo de la organización. Estas acciones contribuyen a fortalecer la participación y el crecimiento conjunto de todos los miembros de la asociación.
+        </p>
+    </div>
+</section>
+
+<!-- ================= PRIMERA IMAGEN3 ================= -->
+<section class="relative py-20 bg-white">
+
+    <img src="{{ url_for('static', filename='image/imagen3. 2026-04-27 093646.png') }}"
+         class="w-full h-auto object-cover">
+
+</section>
+
+<!-- ================= SEGUNDA IMAGEN3 CON FONDO, TEXTO Y CARRUSEL ================= -->
+<section class="relative py-20 overflow-hidden">
+
+    <div class="absolute inset-0 bg-cover bg-center"
+         style="background-image: url('{{ url_for('static', filename='image/imagen3. 2026-04-27 093646.png') }}');">
+    </div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-8">
+        <p data-i18n="servicios_p2" class="text-black text-sm leading-relaxed text-justify mb-8 drop-shadow-lg">
+            La asesoría técnica en el cultivo de palta Hass es brindada por diferentes instituciones y especialistas como SENASA, INIA, AGROIDEAS y asesores privados.
+            <br><br>
+            Estas entidades apoyan a los productores en el manejo adecuado del cultivo, el control sanitario, la aplicación de nuevas tecnologías y la mejora de la productividad.
+            <br><br>
+            Gracias a este acompañamiento, se optimiza el uso de los recursos, se mejora la calidad del fruto y se fortalece la competitividad de la asociación en el mercado nacional e internacional.
+        </p>
+
+        <!-- CARRUSEL -->
+        <div class="relative w-full">
+            <img id="slider-servicios"
+                 src="{{ url_for('static', filename='image/imagen1. 2026-04-27 083251.png') }}"
+                 alt="Carrusel"
+                 class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer select-none">
+            <div id="prev-servicios" class="absolute left-0 top-0 w-1/2 h-full cursor-pointer"></div>
+            <div id="next-servicios" class="absolute right-0 top-0 w-1/2 h-full cursor-pointer"></div>
+        </div>
+    </div>
+
+</section>
+
+<!-- ================= NUESTRAS REDES SOCIALES ================= -->
+<section class="py-8 bg-white text-center">
+    <h2 data-i18n="redes" class="text-2xl font-bold text-[#315106] mb-14 tracking-wide">
+        Nuestras redes sociales
+    </h2>
+    <div class="flex justify-center gap-28 flex-wrap">
+        <a href="#" class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='image/icono/facebook (1).png') }}"
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHAL</p>
+        </a>
+        <a href="#" class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='image/icono/instagram (1).png') }}"
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHAL</p>
+        </a>
+        <a href="#" class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='image/icono/tik-tok (1).png') }}"
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHAL</p>
+        </a>
+        <a href="#" class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='image/icono/youtube.png') }}"
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHAL</p>
+        </a>
+    </div>
+</section>
+
+<script>
+const imagenesServicios = [
+    "{{ url_for('static', filename='image/imagen1. 2026-04-27 083251.png') }}",
+    "{{ url_for('static', filename='image/imagen2. 2026-04-27 083613.png') }}",
+    "{{ url_for('static', filename='image/imagen3. 2026-04-27 093646.png') }}",
+];
+let iServicios = 0;
+const sliderServicios = document.getElementById('slider-servicios');
+
+// Cambio automático cada 3 segundos
+setInterval(() => {
+    iServicios = (iServicios + 1) % imagenesServicios.length;
+    sliderServicios.src = imagenesServicios[iServicios];
+}, 3000);
+
+// Mantener los clics para navegación manual
+document.getElementById('next-servicios').addEventListener('click', () => {
+    iServicios = (iServicios + 1) % imagenesServicios.length;
+    sliderServicios.src = imagenesServicios[iServicios];
+});
+document.getElementById('prev-servicios').addEventListener('click', () => {
+    iServicios = (iServicios - 1 + imagenesServicios.length) % imagenesServicios.length;
+    sliderServicios.src = imagenesServicios[iServicios];
+});
+</script>
+
+{% endblock %}

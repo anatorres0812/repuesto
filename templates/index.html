@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- ===== HERO CON VIDEO DE FONDO ===== -->
+<section class="relative flex items-center justify-center overflow-hidden" style="height: 60vh;">
+
+    <video id="hero-video-index" autoplay muted loop playsinline
+    class="absolute inset-0 w-full h-full object-cover">
+    </video>
+    <script>
+    (function() {
+        var v = document.getElementById('hero-video-index');
+        var isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        v.src = isMobile
+            ? "{{ url_for('static', filename='videos/fondo1_mobile.mp4') }}"
+            : "{{ url_for('static', filename='videos/fondo1.mp4') }}";
+        v.load();
+        v.play().catch(function(){});
+    })();
+    </script>
+
+    <div class="absolute inset-0 bg-black/20"></div>
+
+    <div class="relative z-10 text-center px-4">
+        <h1 data-i18n="bienvenido" class="text-6xl font-semibold text-white tracking-widest">
+            ¡Bienvenido a AAPHAL!
+        </h1>
+        <p data-i18n="subtitulo" class="text-white text-sm uppercase tracking-widest mt-2">
+            Asociación de Agricultores de Palto en Huamanpali - Alto Larán
+        </p>
+    </div>
+
+</section>
+
+<!-- ===== BIENVENIDA + VIDEO ===== -->
+<section class="py-16 px-8 bg-gray-50">
+    <div class="max-w-6xl mx-auto flex items-center gap-12">
+
+        <!-- TEXTO BIENVENIDA -->
+        <div class="w-1/2 bg-white rounded-2xl shadow-md p-8 border-l-4 border-green-700">
+
+            <!-- LOGO -->
+            <div class="flex justify-center mb-6">
+                <img src="{{ url_for('static', filename='image/logos/logo3.png') }}" 
+                     alt="Logo"
+                     class="h-28 object-contain drop-shadow-md">
+            </div>
+
+            <p class="text-gray-700 text-base leading-relaxed text-justify mb-4">
+                Les damos la bienvenida a nuestra asociación de agricultores, un espacio donde el esfuerzo, la unión y la dedicación de nuestros productores se transforman en productos agrícolas de alta calidad. Nos especializamos principalmente en el cultivo de palta, promoviendo prácticas agrícolas sostenibles que respetan el medio ambiente y garantizan la conservación de nuestros recursos naturales.
+            </p>
+
+            <p class="text-gray-700 text-base leading-relaxed text-justify mb-4">
+                Somos un grupo de agricultores comprometidos con el desarrollo de nuestra comunidad, trabajando de manera organizada para mejorar la productividad, la competitividad y el acceso a mejores mercados. A través de la capacitación constante, la innovación en nuestros procesos y el apoyo mutuo entre socios, buscamos fortalecer nuestra cadena productiva desde el campo hasta la comercialización.
+            </p>
+
+            <p class="text-gray-700 text-base leading-relaxed text-justify">
+                Nuestro objetivo es no solo ofrecer productos frescos y de calidad, sino también generar oportunidades de crecimiento económico para nuestras familias y contribuir al desarrollo agrícola de la región.
+            </p>
+
+        </div>
+
+        <!-- IMAGEN -->
+        <div class="w-1/2 rounded-2xl overflow-hidden shadow-xl" style="height: 500px;">
+            <img src="{{ url_for('static', filename='image/oficina/imagennueva1.jpeg') }}"
+                 alt="Imagen AAPHAL"
+                 class="w-full h-full object-cover">
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== ESTADISTICAS ===== -->
+<section class="relative py-20 flex flex-col items-center justify-center overflow-hidden">
+
+    <div class="absolute inset-0 bg-cover bg-center"
+        style="background-image: url('{{ url_for('static', filename='image/capacitaciones/capacitacion16.jpeg') }}');">
+    </div>
+
+    <div class="absolute inset-0 bg-[#556B2F] opacity-50"></div>
+
+    <div class="relative z-10 text-white text-center w-full max-w-5xl mx-auto px-8">
+
+        <div class="flex justify-around mb-12">
+            <div>
+                <p class="text-6xl font-bold" data-target="27">0</p>
+                <p data-i18n="asociados" class="text-xs uppercase tracking-widest mt-2">Nuestros Asociados</p>
+            </div>
+            <div>
+                <p class="text-6xl font-bold"><span data-target="600">0</span> TNL</p>
+                <p data-i18n="produccion_anual" class="text-xs uppercase tracking-widest mt-2">Producción de Palta Anual</p>
+            </div>
+            <div>
+                <p class="text-6xl font-bold"><span data-target="7200">0</span> KG</p>
+                <p data-i18n="produccion_ha" class="text-xs uppercase tracking-widest mt-2">Producción por Ha</p>
+            </div>
+        </div>
+
+        <div class="flex justify-around mb-12">
+            <div>
+                <p class="text-6xl font-bold" data-target="4">0</p>
+                <p data-i18n="paises" class="text-xs uppercase tracking-widest mt-2">Países Atendidos</p>
+            </div>
+            <div>
+                <p class="text-6xl font-bold" data-target="10">0</p>
+                <p data-i18n="exportacion_num" class="text-xs uppercase tracking-widest mt-2">Número de Exportación</p>
+            </div>
+        </div>
+
+        <a data-i18n="vermas" href="{{ url_for('exportacion') }}" 
+           class="border border-white text-white px-8 py-2 rounded-full hover:bg-white hover:text-[#556B2F] transition">
+            VER MÁS
+        </a>
+
+    </div>
+
+</section>
+
+        <!-- SCRIPT CONTADOR -->
+        <script>
+            const contadores = document.querySelectorAll('[data-target]');
+            contadores.forEach(contador => {
+                const target = parseInt(contador.getAttribute('data-target'));
+                let count = 0;
+                const step = Math.ceil(target / 100);
+                const interval = setInterval(() => {
+                    count += step;
+                    if (count >= target) {
+                        contador.textContent = target;
+                        clearInterval(interval);
+                    } else {
+                        contador.textContent = count;
+                    }
+                }, 20);
+            });
+        </script>
+
+<!-- ===== NUESTROS PRODUCTOS ===== -->
+<section class="py-10 px-8 bg-white">
+
+    <div class="max-w-6xl mx-auto text-center">
+
+        <!-- TÍTULO -->
+        <h2 data-i18n="palta_hass" class="text-2xl font-extrabold mb-10 text-[#556B2F] uppercase tracking-wider">
+            Nuestros Productos
+        </h2>
+
+        <!-- PRODUCTOS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- HASS -->
+            <div class="relative rounded-xl overflow-hidden shadow-md group cursor-pointer">
+                <img src="{{ url_for('static', filename='image/campo/cosechando2.jpg') }}" 
+                     alt="Palta Hass"
+                     class="w-full h-72 object-cover transition duration-500 group-hover:scale-105">
+                <div class="absolute inset-0 bg-[#556B2F]/70 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col items-center justify-center px-6">
+                    <h3 class="text-white text-2xl font-bold mb-2">Palta Hass</h3>
+                    <p class="text-white text-sm text-center">Variedad más exportada del mundo, de piel rugosa y oscura, cremosa y de sabor intenso. Ideal para mercados internacionales.</p>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 bg-white py-3">
+                    <h3 class="text-[#556B2F] font-semibold text-lg group-hover:opacity-0 transition duration-300">Palta Hass</h3>
+                </div>
+            </div>
+
+            <!-- FUERTE -->
+            <div class="relative rounded-xl overflow-hidden shadow-md group cursor-pointer">
+                <img src="{{ url_for('static', filename='image/campo/campo5.jpg') }}" 
+                     alt="Palta Fuerte"
+                     class="w-full h-72 object-cover transition duration-500 group-hover:scale-105">
+                <div class="absolute inset-0 bg-[#556B2F]/70 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col items-center justify-center px-6">
+                    <h3 class="text-white text-2xl font-bold mb-2">Palta Fuerte</h3>
+                    <p class="text-white text-sm text-center">De piel verde y lisa, con pulpa suave y sabor delicado. Muy apreciada por su tamaño y calidad en mercados nacionales.</p>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 bg-white py-3">
+                    <h3 class="text-[#556B2F] font-semibold text-lg group-hover:opacity-0 transition duration-300">Palta Fuerte</h3>
+                </div>
+            </div>
+
+            <!-- SULTANO -->
+            <div class="relative rounded-xl overflow-hidden shadow-md group cursor-pointer">
+                <img src="{{ url_for('static', filename='image/productos/producto3.jpg') }}" 
+                     alt="Palta Sultano"
+                     class="w-full h-72 object-cover transition duration-500 group-hover:scale-105">
+                <div class="absolute inset-0 bg-[#556B2F]/70 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col items-center justify-center px-6">
+                    <h3 class="text-white text-2xl font-bold mb-2">Palta Sultano</h3>
+                    <p class="text-white text-sm text-center">Variedad de gran tamaño y pulpa abundante, con piel verde brillante. Destaca por su rendimiento y calidad en campo.</p>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 bg-white py-3">
+                    <h3 class="text-[#556B2F] font-semibold text-lg group-hover:opacity-0 transition duration-300">Palta Sultano</h3>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BOTÓN VER MÁS -->
+        <div class="mt-10 flex justify-center">
+            <a href="{{ url_for('produccion') }}"
+               class="border border-[#556B2F] text-[#556B2F] px-8 py-2 rounded-full hover:bg-[#556B2F] hover:text-white transition">
+                VER MÁS
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== VALORES ===== -->
+<section class="py-10 px-6 bg-white">
+
+    <div class="max-w-4xl mx-auto">
+
+        <!-- TARJETA -->
+        <div style="
+            border:2px solid #556B2F;
+            border-radius:20px;
+            padding:20px;
+            background:white;
+            box-shadow:0 10px 30px rgba(0,0,0,0.08);
+        ">
+
+            <!-- IMAGEN -->
+            <img src="{{ url_for('static', filename='image/otros/valores.png') }}"
+                 alt="Valores AAPHAL"
+                 style="width:100%; border-radius:14px; display:block;">
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===== NUESTRAS REDES SOCIALES ===== -->
+<section class="py-8 bg-white text-center">
+    <h2 data-i18n="redes" class="text-2xl font-bold text-[#556B2F] mb-14 tracking-wide">
+        Nuestras redes sociales
+    </h2>
+    <div class="flex justify-center gap-28 flex-wrap">
+        <a href="#" class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/facebook.png') }}" 
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+        <a href="https://www.instagram.com/aaphalperu/?hl=es" target="_blank"
+           class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/instagram.png') }}" 
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+        <a href="https://www.tiktok.com/@aaphalperu" target="_blank"
+           class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/tiktok.png') }}" 
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+        <a href="https://www.youtube.com/@Asociaci%C3%B3ndeAgricultoresenHuam" target="_blank"
+           class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/youtube.png') }}" 
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+    </div>
+</section>
+
+
+{% endblock %}

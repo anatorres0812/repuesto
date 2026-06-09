@@ -1,0 +1,58 @@
+/* =========================
+   MODAL DE IMAGEN
+   ========================= */
+
+#modalImagen {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.85);
+    align-items: center;
+    justify-content: center;
+}
+
+#modalImagen .modal-contenido {
+    position: relative;
+    max-width: 800px;
+    width: 90%;
+    margin: auto;
+}
+
+#modalImagen .modal-volver {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    color: white;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#modalImagen .modal-cerrar {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+#modalImagen .modal-cerrar:hover,
+#modalImagen .modal-volver:hover {
+    color: #ccc;
+}
+
+#modalImg {
+    width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+}

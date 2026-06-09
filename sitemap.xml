@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- INICIO -->
+  <url>
+    <loc>https://www.aaphalperu.com/</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- NOSOTROS -->
+  <url>
+    <loc>https://www.aaphalperu.com/nosotros</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- PRODUCCIÓN AGRÍCOLA -->
+  <url>
+    <loc>https://www.aaphalperu.com/produccion</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- EXPORTACIÓN -->
+  <url>
+    <loc>https://www.aaphalperu.com/exportacion</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ALIANZAS -->
+  <url>
+    <loc>https://www.aaphalperu.com/alianzas</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- NOTICIAS -->
+  <url>
+    <loc>https://www.aaphalperu.com/noticias</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- CONTACTO -->
+  <url>
+    <loc>https://www.aaphalperu.com/contacto</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

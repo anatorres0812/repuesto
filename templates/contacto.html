@@ -1,0 +1,355 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- ===== HERO CON VIDEO DE FONDO ===== -->
+<section class="contacto-hero">
+    <video id="hero-video-contacto" autoplay muted loop playsinline></video>
+
+    <script>
+    (function() {
+        var v = document.getElementById('hero-video-contacto');
+        var isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+        v.src = isMobile
+            ? "{{ url_for('static', filename='videos/fondo2_mobile.mp4') }}"
+            : "{{ url_for('static', filename='videos/fondo2.mp4') }}";
+
+        v.load();
+        v.play().catch(function(){});
+    })();
+    </script>
+
+    <div class="hero-text">
+        <h1 data-i18n="contacto_titulo">ESTAMOS AQUÍ PARA AYUDARTE</h1>
+    </div>
+</section>
+
+<!-- ===== FORMULARIO ===== -->
+<section class="contacto-section">
+
+    <div class="contacto-card">
+
+        <!-- LADO IZQUIERDO -->
+        <div class="contacto-form-side">
+
+            <div class="form-acento"></div>
+
+            <h2 data-i18n="contacto_titulo" class="form-titulo">
+                Estamos aquí para ayudarte
+            </h2>
+
+            <p data-i18n="contacto_texto" class="form-subtitulo">
+                Contamos con un equipo de profesionales que pueden ayudarte
+                a resolver consultas sobre nuestro servicio, puede enviarnos
+                un mensaje directamente llenando el formulario a continuación.
+            </p>
+
+            <form onsubmit="enviarFormulario(event)">
+
+                <div class="form-grid">
+
+                    <!-- NOMBRE -->
+                    <div class="form-group">
+
+                        <label data-i18n="nombre">
+                            Tu nombre
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombreInput"
+                            oninput="soloLetras(this)"
+                            placeholder="Ej: Juan Pérez"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- CORREO -->
+                    <div class="form-group">
+
+                        <label data-i18n="correo">
+                            Tu correo electrónico
+                        </label>
+
+                        <input
+                            type="email"
+                            id="correoInput"
+                            oninput="validarCorreo(this)"
+                            placeholder="ejemplo@correo.com"
+                            required
+                        >
+
+                        <span id="correoError" class="campo-error"></span>
+
+                    </div>
+
+                    <!-- TELEFONO -->
+                    <div class="form-group">
+
+                        <label data-i18n="telefono">
+                            Tu teléfono
+                        </label>
+
+                        <div class="telefono-wrap">
+
+                            <select id="paisCodigo" onchange="actualizarTelefono()">
+
+                                <option value="PE" data-code="+51" data-digits="9" data-starts="9">
+                                    🇵🇪 PE +51
+                                </option>
+
+                                <option value="US" data-code="+1" data-digits="10">
+                                    🇺🇸 US +1
+                                </option>
+
+                                <option value="GB" data-code="+44" data-digits="10">
+                                    🇬🇧 UK +44
+                                </option>
+
+                                <option value="AU" data-code="+61" data-digits="9" data-starts="4">
+                                    🇦🇺 AU +61
+                                </option>
+
+                                <option value="CA" data-code="+1" data-digits="10">
+                                    🇨🇦 CA +1
+                                </option>
+
+                                <option value="NZ" data-code="+64" data-digits="9" data-starts="2">
+                                    🇳🇿 NZ +64
+                                </option>
+
+                                <option value="ZA" data-code="+27" data-digits="9" data-starts="6">
+                                    🇿🇦 ZA +27
+                                </option>
+
+                                <option value="NG" data-code="+234" data-digits="10" data-starts="7">
+                                    🇳🇬 NG +234
+                                </option>
+
+                                <option value="IN" data-code="+91" data-digits="10" data-starts="6">
+                                    🇮🇳 IN +91
+                                </option>
+
+                                <option value="PH" data-code="+63" data-digits="10" data-starts="9">
+                                    🇵🇭 PH +63
+                                </option>
+
+                            </select>
+
+                            <input
+                                type="tel"
+                                id="telefonoInput"
+                                oninput="validarTelefono(this)"
+                                placeholder="9XXXXXXXX"
+                                maxlength="9"
+                                required
+                            >
+
+                        </div>
+
+                        <span id="telefonoError" class="campo-error"></span>
+
+                    </div>
+
+                    <!-- ASUNTO -->
+                    <div class="form-group">
+
+                        <label data-i18n="asunto">
+                            Asunto
+                        </label>
+
+                        <select id="selectAsunto" onchange="mostrarCampoPersonalizado(this)">
+
+                            <option value="">
+                                -- Selecciona un asunto --
+                            </option>
+
+                            <option value="Consulta sobre exportación">
+                                Consulta sobre exportación
+                            </option>
+
+                            <option value="Información sobre asociación">
+                                Información sobre asociación
+                            </option>
+
+                            <option value="Consulta sobre producción agrícola">
+                                Consulta sobre producción agrícola
+                            </option>
+
+                            <option value="Alianzas estratégicas">
+                                Alianzas estratégicas
+                            </option>
+
+                            <option value="Capacitaciones">
+                                Capacitaciones
+                            </option>
+
+                            <option value="otro">
+                                Otro (escribir)
+                            </option>
+
+                        </select>
+
+                        <input
+                            type="text"
+                            id="asuntoPersonalizado"
+                            class="campo-personalizado"
+                            placeholder="Escribe tu asunto..."
+                        >
+
+                    </div>
+
+                    <!-- MENSAJE -->
+                    <div class="form-group form-full">
+
+                        <label>
+                            Mensaje
+                        </label>
+
+                        <textarea
+                            id="mensajeInput"
+                            rows="3"
+                            placeholder="Escribe tu mensaje aquí..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+                <div class="form-center">
+
+                    <button
+                        data-i18n="enviar"
+                        type="submit"
+                        class="btn-enviar"
+                    >
+                        ENVIAR
+                    </button>
+
+                </div>
+
+            </form>
+
+            <div id="mensajeExito" class="msg-exito">
+                ✅ ¡Mensaje enviado correctamente!
+            </div>
+
+        </div>
+
+        <!-- LADO DERECHO: IMAGEN + INFO -->
+        <div class="contacto-img-side">
+            <img src="{{ url_for('static', filename='image/campo/cosechando3.jpg') }}" alt="Campo AAPHAL">
+            <div class="img-overlay"></div>
+            <div class="img-info">
+                <h3>Contáctanos</h3>
+
+                <div class="info-item">
+                    <div class="info-icon">📧</div>
+                    <div>
+                        <p class="info-label">Correo</p>
+                        <p class="info-value">aaphalperu@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div>
+                        <p class="info-label">Ubicación</p>
+                        <p class="info-value">Huamanpali, Alto Larán<br>Chincha, Perú</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">🏢</div>
+                    <div>
+                        <p class="info-label">RUC</p>
+                        <p class="info-value">20605371869</p>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script src="{{ url_for('static', filename='js/pages/contacto.js') }}"></script>
+
+<!-- ===== MAPA DE UBICACIÓN ===== -->
+<section class="mapa-section">
+    <div class="mapa-card">
+
+        <!-- ENCABEZADO -->
+        <div class="mapa-header">
+            <div class="form-acento"></div>
+            <h2 class="form-titulo">¿Cómo llegar?</h2>
+            <p class="form-subtitulo">
+                Estamos ubicados en Huamanpali, Alto Larán, Chincha, Ica — Perú.
+                Usa el mapa para ver la ruta más corta desde tu ubicación.
+            </p>
+        </div>
+
+        <!-- CONTENIDO: MAPA + INFO -->
+        <div class="mapa-contenido">
+
+            <!-- MAPA EMBEBIDO -->
+            <div class="mapa-iframe-wrap">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.5!2d-76.1200!3d-13.4800!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9110f0a0a0a0a0a1%3A0x0!2sHuamanpali%2C+Alto+Lar%C3%A1n%2C+Chincha!5e0!3m2!1ses!2spe!4v1"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <!-- INFO LATERAL -->
+            <div class="mapa-info">
+
+                <div class="mapa-info-item">
+                    <div class="mapa-info-icon">📍</div>
+                    <div>
+                        <p class="mapa-info-label">Dirección</p>
+                        <p class="mapa-info-value">Huamanpali, Alto Larán<br>Chincha, Ica — Perú</p>
+                    </div>
+                </div>
+
+                <div class="mapa-info-item">
+                    <div class="mapa-info-icon">🕐</div>
+                    <div>
+                        <p class="mapa-info-label">Horario de atención</p>
+                        <p class="mapa-info-value">Lunes a Viernes<br>8:00 am — 5:00 pm</p>
+                    </div>
+                </div>
+
+                <div class="mapa-info-item">
+                    <div class="mapa-info-icon">🚗</div>
+                    <div>
+                        <p class="mapa-info-label">Referencia</p>
+                        <p class="mapa-info-value">Distrito de Alto Larán,<br>Provincia de Chincha</p>
+                    </div>
+                </div>
+
+                <!-- BOTONES -->
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Huamanpali,+Alto+Lar%C3%A1n,+Chincha,+Per%C3%BA"
+                   target="_blank"
+                   class="btn-ruta">
+                    🗺️ Ver ruta en Google Maps
+                </a>
+
+                <a href="https://waze.com/ul?ll=-13.48,-76.12&navigate=yes"
+                   target="_blank"
+                   class="btn-waze">
+                    🔵 Abrir en Waze
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

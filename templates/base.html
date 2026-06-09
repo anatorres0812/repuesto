@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es" id="htmlTag">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAPHAL</title>
+
+    <!-- TAILWIND LOCAL -->
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/output.css') }}?v=2">
+
+    <!-- ESTILOS PERSONALIZADOS -->
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}?v=2">
+
+    <!-- MODAL CSS -->
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/modal.css') }}?v=2">
+
+</head>
+
+<body class="m-0 p-0 flex flex-col min-h-screen">
+
+<!-- ================= NAVBAR ================= -->
+<nav style="background-color: #086632; width: 100%;">
+
+    <div style="display:flex; align-items:center; justify-content:space-between; padding: 8px 24px;">
+
+        <!-- LOGO (clickeable → inicio) -->
+        <a href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='image/logos/logo2.png') }}"
+                style="height:48px; width:48px; border-radius:50%; object-fit:cover;">
+        </a>
+
+        <!-- MENU DESKTOP -->
+        <ul id="nav-desktop" style="display:flex; align-items:center; gap:40px; list-style:none; margin:0; padding:0;">
+            <li><a href="{{ url_for('index') }}" data-i18n="inicio" style="color:white; font-size:11px; text-transform:uppercase; text-decoration:none;">Inicio</a></li>
+            <li><a href="{{ url_for('nosotros') }}" data-i18n="nosotros" style="color:white; font-size:11px; text-transform:uppercase; text-decoration:none;">Nosotros</a></li>
+            <li><a href="{{ url_for('produccion') }}" data-i18n="produccion" style="color:white; font-size:11px; text-transform:uppercase; text-decoration:none;">Producción Agrícola</a></li>
+            <li><a href="{{ url_for('exportacion') }}" data-i18n="exportacion" style="color:white; font-size:11px; text-transform:uppercase; text-decoration:none;">Exportación</a></li>
+            <li><a href="{{ url_for('noticias') }}" data-i18n="noticias" style="color:white; font-size:11px; text-transform:uppercase; text-decoration:none;">Noticias</a></li>
+            <li><a href="{{ url_for('contacto') }}" data-i18n="contacto" style="color:white; font-size:11px; text-transform:uppercase; text-decoration:none;">Contacto</a></li>
+        </ul>
+
+        <!-- IDIOMA DESKTOP -->
+        <div id="idioma-desktop" style="display:flex; gap:8px;">
+            <button onclick="cambiarIdioma('es')" style="background:white; color:#086632; font-size:11px; font-weight:bold; padding:4px 12px; border-radius:999px; border:none; cursor:pointer;">ES</button>
+            <button onclick="cambiarIdioma('en')" style="background:white; color:#086632; font-size:11px; font-weight:bold; padding:4px 12px; border-radius:999px; border:none; cursor:pointer;">EN</button>
+        </div>
+
+        <!-- BOTONES MÓVIL -->
+        <div id="nav-mobile-btns" style="display:none; align-items:center; gap:12px;">
+            <!-- IDIOMA -->
+            <button onclick="toggleMenuIdioma()" style="background:none; border:none; cursor:pointer; color:white;" title="Idioma">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                </svg>
+            </button>
+            <!-- HAMBURGUESA -->
+            <button onclick="toggleMenuMobile()" style="background:none; border:none; cursor:pointer; color:white;" title="Menú">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- MENÚ MÓVIL - SECCIONES -->
+    <div id="menu-mobile" style="display:none; padding: 0 24px 16px;">
+        <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:4px;">
+            <li><a href="{{ url_for('index') }}" data-i18n="inicio" style="color:white; font-size:13px; text-transform:uppercase; text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.2);">Inicio</a></li>
+            <li><a href="{{ url_for('nosotros') }}" data-i18n="nosotros" style="color:white; font-size:13px; text-transform:uppercase; text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.2);">Nosotros</a></li>
+            <li><a href="{{ url_for('produccion') }}" data-i18n="produccion" style="color:white; font-size:13px; text-transform:uppercase; text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.2);">Producción Agrícola</a></li>
+            <li><a href="{{ url_for('exportacion') }}" data-i18n="exportacion" style="color:white; font-size:13px; text-transform:uppercase; text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.2);">Exportación</a></li>
+            <li><a href="{{ url_for('noticias') }}" data-i18n="noticias" style="color:white; font-size:13px; text-transform:uppercase; text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.2);">Noticias</a></li>
+            <li><a href="{{ url_for('contacto') }}" data-i18n="contacto" style="color:white; font-size:13px; text-transform:uppercase; text-decoration:none; display:block; padding:8px 0;">Contacto</a></li>
+        </ul>
+    </div>
+
+    <!-- MENÚ MÓVIL - IDIOMAS -->
+    <div id="menu-idioma" style="display:none; padding: 0 24px 16px;">
+        <div style="display:flex; gap:12px;">
+            <button onclick="cambiarIdioma('es'); toggleMenuIdioma()" style="background:white; color:#086632; font-size:12px; font-weight:bold; padding:8px 16px; border-radius:999px; border:none; cursor:pointer;">ES - Español</button>
+            <button onclick="cambiarIdioma('en'); toggleMenuIdioma()" style="background:white; color:#086632; font-size:12px; font-weight:bold; padding:8px 16px; border-radius:999px; border:none; cursor:pointer;">EN - English</button>
+        </div>
+    </div>
+
+</nav>
+
+<script>
+// Responsive navbar: móvil < 768px
+function aplicarNavResponsive() {
+    const esMobil = window.innerWidth < 768;
+    document.getElementById('nav-desktop').style.display = esMobil ? 'none' : 'flex';
+    document.getElementById('idioma-desktop').style.display = esMobil ? 'none' : 'flex';
+    document.getElementById('nav-mobile-btns').style.display = esMobil ? 'flex' : 'none';
+    if (!esMobil) {
+        document.getElementById('menu-mobile').style.display = 'none';
+        document.getElementById('menu-idioma').style.display = 'none';
+    }
+}
+function toggleMenuMobile() {
+    const menu = document.getElementById('menu-mobile');
+    const idioma = document.getElementById('menu-idioma');
+    idioma.style.display = 'none';
+    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+}
+function toggleMenuIdioma() {
+    const idioma = document.getElementById('menu-idioma');
+    const menu = document.getElementById('menu-mobile');
+    menu.style.display = 'none';
+    idioma.style.display = idioma.style.display === 'none' ? 'block' : 'none';
+}
+window.addEventListener('resize', aplicarNavResponsive);
+document.addEventListener('DOMContentLoaded', aplicarNavResponsive);
+</script>
+
+<!-- ================= CONTENIDO ================= -->
+<main class="flex-1">
+
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="relative text-white mx-8 mb-8 overflow-hidden rounded-2xl">
+
+    <!-- IMAGEN FONDO -->
+    <div class="absolute inset-0 bg-cover bg-center"
+        style="background-image: url('{{ url_for('static', filename='image/campo/cosechando2.jpg') }}');">
+    </div>
+
+    <!-- OVERLAY -->
+    <div class="absolute inset-0 bg-[#556B2F] opacity-80"></div>
+
+    <!-- CONTENIDO -->
+    <div class="relative z-10 w-full px-16 py-16 flex flex-col md:flex-row justify-between items-start gap-12">
+
+        <!-- IZQUIERDA -->
+        <div class="w-full md:w-2/3">
+
+            <p data-i18n="footer_texto"
+                class="text-sm leading-relaxed text-justify mb-10">
+
+                Nuestro propósito es unir a los agricultores de palta para compartir
+                conocimientos, innovar en técnicas de cultivo y fortalecer nuestra
+                presencia en el mercado global, asegurando un futuro próspero para
+                todos nuestros miembros.
+
+            </p>
+
+            <p class="text-sm mb-2">
+                RUC: 20605371869
+            </p>
+
+            <p class="text-sm mb-6">
+                aaphalperu@gmail.com
+            </p>
+
+            <a href="#"
+                data-i18n="politicas"
+                class="block text-sm hover:text-yellow-300 mb-2">
+                Políticas
+            </a>
+
+            <a href="#"
+                data-i18n="terminos"
+                class="block text-sm hover:text-yellow-300 mb-2">
+                Términos
+            </a>
+
+            <a href="reclamaciones"
+                data-i18n="libro"
+                class="block text-sm hover:text-yellow-300">
+                Libro de reclamaciones
+            </a>
+
+        </div>
+
+        <!-- DERECHA -->
+        <div class="text-right w-full md:w-1/3">
+
+            <a data-i18n="inicio"
+                href="{{ url_for('index') }}"
+                class="block text-sm hover:text-yellow-300 mb-4">
+                Inicio
+            </a>
+
+            <a data-i18n="nosotros"
+                href="{{ url_for('nosotros') }}"
+                class="block text-sm hover:text-yellow-300 mb-4">
+                Nosotros
+            </a>
+
+            <a data-i18n="produccion"
+                href="{{ url_for('produccion') }}"
+                class="block text-sm hover:text-yellow-300 mb-4">
+                Producción Agrícola
+            </a>
+
+            <a data-i18n="exportacion"
+                href="{{ url_for('exportacion') }}"
+                class="block text-sm hover:text-yellow-300 mb-4">
+                Exportación
+            </a>
+
+            <a data-i18n="noticias"
+                href="{{ url_for('noticias') }}"
+                class="block text-sm hover:text-yellow-300 mb-4">
+                Noticias
+            </a>
+
+            <a data-i18n="contacto"
+                href="{{ url_for('contacto') }}"
+                class="block text-sm hover:text-yellow-300 mb-10">
+                Contacto
+            </a>
+
+            <p data-i18n="copyright"
+                class="text-xs">
+
+                © 2026 Asociación de Agricultores de Palta en Huampalí - Alto Larán
+
+            </p>
+
+            <p data-i18n="derechos"
+                class="text-xs mt-2">
+
+                Todos los derechos reservados
+
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- ================= CHATBOT ================= -->
+<button class="chatbot-btn" onclick="toggleChatbot()" title="Asistente AAPHAL">
+    <video autoplay muted loop playsinline
+           style="width:70px;height:70px;border-radius:50%;object-fit:cover;box-shadow:0 4px 20px rgba(85,107,47,0.5);">
+        <source src="{{ url_for('static', filename='gif_chatbot/WhatsApp Video 2026-05-18 at 11.47.23 PM.mp4') }}" type="video/mp4">
+    </video>
+</button>
+
+<div class="chatbot-ventana" id="chatbot-ventana" style="display:none;">
+    <div class="chatbot-header">
+        <img src="{{ url_for('static', filename='image/logos/logo2.png') }}" alt="AAPHAL">
+        <div class="chatbot-header-info">
+            <h4>Asistente AAPHAL</h4>
+            <p>🟢 En línea</p>
+        </div>
+        <button class="chatbot-cerrar" onclick="toggleChatbot()">✕</button>
+    </div>
+    <div class="chatbot-mensajes" id="chatbot-mensajes">
+        <div class="msg-bot">
+            ¡Hola! Soy el asistente virtual de AAPHAL 🥑. Puedo ayudarte con información sobre nuestra asociación, productos, exportaciones, alianzas y más. ¿En qué puedo ayudarte?
+        </div>
+    </div>
+    <div class="chatbot-input-wrap">
+        <input type="text" id="chatbot-input" placeholder="Escribe tu pregunta...">
+        <button class="chatbot-send" onclick="enviarMensajeChatbot()">➤</button>
+    </div>
+</div>
+
+<!-- ================= JS ================= -->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script src="{{ url_for('static', filename='js/components/chatbot.js') }}"></script>
+
+</body>
+</html>

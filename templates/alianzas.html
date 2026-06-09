@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- ================= IMAGEN FONDO ALIANZAS ================= -->
+<section class="relative h-96 flex items-center justify-center overflow-hidden">
+
+    <img src="{{ url_for('static', filename='image/imagen1. 2026-04-27 083251.png') }}"
+         class="absolute inset-0 w-full h-full object-cover">
+
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <div class="relative z-10 text-center">
+        <h1 data-i18n="alianzas" class="text-6xl font-semibold text-white tracking-widest">
+            ALIANZAS
+        </h1>
+    </div>
+
+</section>
+
+<!-- ================= CONTENIDO ALIANZAS ================= -->
+<section class="py-16 px-8 bg-white">
+    <div class="max-w-6xl mx-auto flex items-center gap-12">
+
+        <div class="w-2/3 text-left">
+            <p data-i18n="alianzas_p1" class="text-gray-700 text-sm leading-relaxed text-justify">
+                Las alianzas y entidades estratégicas son fundamentales para el desarrollo de la asociación, ya que permiten fortalecer las capacidades productivas y mejorar la competitividad del cultivo de palta Hass. A través del trabajo conjunto con instituciones públicas y privadas, se accede a asesoría técnica, capacitaciones y apoyo en procesos de certificación y comercialización.
+                <br><br>
+                Estas alianzas facilitan la implementación de nuevas tecnologías, el cumplimiento de estándares de calidad y la apertura a nuevos mercados, contribuyendo al crecimiento sostenible de la asociación y al bienestar de sus productores.
+            </p>
+        </div>
+
+        <div class="w-1/3 flex justify-center">
+            <img src="{{ url_for('static', filename='image/imagen2. 2026-04-27 083613.png') }}"
+                 alt="Alianzas"
+                 class="w-full h-auto object-cover rounded-lg shadow-md">
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= ALIANZAS ESTRATÉGICAS ================= -->
+<section class="py-16 px-8 bg-white">
+    <div class="max-w-6xl mx-auto text-center">
+        <h2 data-i18n="alianzas_frase" class="text-2xl font-semibold text-[#315106] mb-12">
+            "Trabajando junto a aliados estratégicos para un mejor futuro"
+        </h2>
+
+        <div class="space-y-6">
+            <!-- Alianza 1 - AGROIDEAS -->
+            <div class="flex items-center justify-between bg-gray-50 p-6 rounded-lg shadow-sm">
+                <div class="flex items-center space-x-6 flex-1">
+                    <img src="{{ url_for('static', filename='image/alianzas/agroideas.jpg') }}" alt="Agroideas" class="w-24 h-24 object-contain">
+                    <span class="text-lg font-medium text-[#315106] text-center flex-1">AGROIDEAS</span>
+                </div>
+                <button data-i18n="alianzas_descargar" class="bg-[#315106] text-white px-6 py-2 rounded-md hover:bg-[#4a7a1a] transition duration-300">DESCARGAR PDF</button>
+            </div>
+
+            <!-- Alianza 2 - AGROMERCADO -->
+            <div class="flex items-center justify-between bg-gray-50 p-6 rounded-lg shadow-sm">
+                <div class="flex items-center space-x-6 flex-1">
+                    <img src="{{ url_for('static', filename='image/alianzas/agromercado.png') }}" alt="Agromercado" class="w-24 h-24 object-contain">
+                    <span class="text-lg font-medium text-[#315106] text-center flex-1">AGROMERCADO</span>
+                </div>
+                <button data-i18n="alianzas_descargar" class="bg-[#315106] text-white px-6 py-2 rounded-md hover:bg-[#4a7a1a] transition duration-300">DESCARGAR PDF</button>
+            </div>
+
+            <!-- Alianza 3 - FONDO PERÚ -->
+            <div class="flex items-center justify-between bg-gray-50 p-6 rounded-lg shadow-sm">
+                <div class="flex items-center space-x-6 flex-1">
+                    <img src="{{ url_for('static', filename='image/alianzas/fondoperu.jpg') }}" alt="Fondo Perú" class="w-24 h-24 object-contain">
+                    <span class="text-lg font-medium text-[#315106] text-center flex-1">FONDO PERÚ</span>
+                </div>
+                <button data-i18n="alianzas_descargar" class="bg-[#315106] text-white px-6 py-2 rounded-md hover:bg-[#4a7a1a] transition duration-300">DESCARGAR PDF</button>
+            </div>
+
+            <!-- Alianza 4 - INIA -->
+            <div class="flex items-center justify-between bg-gray-50 p-6 rounded-lg shadow-sm">
+                <div class="flex items-center space-x-6 flex-1">
+                    <img src="{{ url_for('static', filename='image/alianzas/inia.jpg') }}" alt="INIA" class="w-24 h-24 object-contain">
+                    <span class="text-lg font-medium text-[#315106] text-center flex-1">INIA</span>
+                </div>
+                <button data-i18n="alianzas_descargar" class="bg-[#315106] text-white px-6 py-2 rounded-md hover:bg-[#4a7a1a] transition duration-300">DESCARGAR PDF</button>
+            </div>
+
+            <!-- Alianza 5 - SENASA -->
+            <div class="flex items-center justify-between bg-gray-50 p-6 rounded-lg shadow-sm">
+                <div class="flex items-center space-x-6 flex-1">
+                    <img src="{{ url_for('static', filename='image/alianzas/senasa.png') }}" alt="SENASA" class="w-24 h-24 object-contain">
+                    <span class="text-lg font-medium text-[#315106] text-center flex-1">SENASA</span>
+                </div>
+                <button data-i18n="alianzas_descargar" class="bg-[#315106] text-white px-6 py-2 rounded-md hover:bg-[#4a7a1a] transition duration-300">DESCARGAR PDF</button>
+            </div>
+
+            <!-- Alianza 6 - VALLE GRANDE -->
+            <div class="flex items-center justify-between bg-gray-50 p-6 rounded-lg shadow-sm">
+                <div class="flex items-center space-x-6 flex-1">
+                    <img src="{{ url_for('static', filename='image/alianzas/vg.png') }}" alt="Valle Grande" class="w-24 h-24 object-contain">
+                    <span class="text-lg font-medium text-[#315106] text-center flex-1">VALLE GRANDE</span>
+                </div>
+                <button data-i18n="alianzas_descargar" class="bg-[#315106] text-white px-6 py-2 rounded-md hover:bg-[#4a7a1a] transition duration-300">DESCARGAR PDF</button>
+            </div>
+
+            <!-- Alianza 7 - icono placeholder (para cuando se suba) -->
+            <div class="flex items-center justify-between bg-gray-50 p-6 rounded-lg shadow-sm">
+                <div class="flex items-center space-x-6 flex-1">
+                    <img src="{{ url_for('static', filename='image/icono/icono4 2026-04-27 085444.png') }}" alt="Icono" class="w-24 h-24">
+                    <span class="text-lg font-medium text-[#315106] text-center flex-1">NOMBRE DE LAS ENTIDADES</span>
+                </div>
+                <button data-i18n="alianzas_descargar" class="bg-[#315106] text-white px-6 py-2 rounded-md hover:bg-[#4a7a1a] transition duration-300">DESCARGAR PDF</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Separador -->
+<div class="w-full h-1 bg-[#829B62] my-8"></div>
+
+<!-- ===== NUESTRAS REDES SOCIALES ===== -->
+<section class="py-8 pb-5 bg-white text-center">
+    <h2 data-i18n="redes" class="text-2xl font-bold text-[#556B2F] mb-14 tracking-wide">
+        Nuestras redes sociales
+    </h2>
+    <div class="flex justify-center gap-28 flex-wrap">
+        <a href="#" class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/facebook.png') }}"
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+        <a href="https://www.instagram.com/aaphalperu/?hl=es" target="_blank"
+           class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/instagram.png') }}"
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+        <a href="https://www.tiktok.com/@aaphalperu" target="_blank"
+           class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/tiktok.png') }}"
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+        <a href="https://www.youtube.com/@Asociaci%C3%B3ndeAgricultoresenHuam" target="_blank"
+           class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/youtube.png') }}"
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+    </div>
+</section>
+
+{% endblock %}

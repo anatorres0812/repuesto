@@ -1,0 +1,277 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- ===== HERO VACÍO (NO ROMPE CABECERA) ===== -->
+<section style="height:10px;"></section>
+
+<!-- TEXTO EN CURVA + LOGO + VIDEO FLOTANTE -->
+<section class="py-0 bg-white flex flex-col items-center -mt-24 relative">
+
+    <!-- VIDEO FLOTANTE DERECHA (SIN CORTAR Y MÁS ABAJO) -->
+    <video autoplay muted loop playsinline
+           style="
+                position:absolute;
+                right:20px;
+                top:90%;
+                transform:translateY(-50%);
+                width:140px;
+                height:auto;
+                max-height:180px;
+                object-fit:contain;
+                border-radius:10px;
+                z-index:10;
+           ">
+        <source src="{{ url_for('static', filename='gif_chatbot/palta.mp4') }}" type="video/mp4">
+    </video>
+
+    <!-- SVG -->
+    <svg viewBox="0 0 800 200" class="w-full max-w-5xl">
+
+        <defs>
+            <path id="curve1" d="M40,170 Q400,10 760,170" />
+            <path id="curve2" d="M80,195 Q400,40 720,195" />
+        </defs>
+
+        <text font-size="25" fill="#556B2F" font-weight="700">
+            <textPath href="#curve1" startOffset="50%" text-anchor="middle">
+                Unidos por el cultivo de palta comprometidos con
+            </textPath>
+        </text>
+
+        <text font-size="25" fill="#556B2F" font-weight="700">
+            <textPath href="#curve2" startOffset="50%" text-anchor="middle">
+                la calidad y el desarrollo sostenible de nuestra comunidad
+            </textPath>
+        </text>
+
+    </svg>
+
+    <!-- LOGO -->
+    <img src="{{ url_for('static', filename='image/logos/logo3.png') }}"
+         alt="Logo"
+         class="w-40 -mt-16">
+
+    <!-- TEXTO -->
+    <p class="mt-6 max-w-3xl text-center text-gray-700 text-sm leading-relaxed">
+        Somos una asociación de agricultores dedicada al cultivo de palta, ubicada en Huamanpali, en el distrito de Alto Larán, provincia de Chincha,
+        trabajamos unidos para mejorar nuestras prácticas agrícolas, garantizar la calidad de nuestros productos y contribuir al desarrollo sostenible de nuestra comunidad.
+    </p>
+
+</section>
+
+<!-- ===== NUESTRA HISTORIA ===== -->
+<section class="py-20 mt-12 bg-white relative overflow-hidden">
+
+    <!-- IMAGEN DE FONDO -->
+    <div class="absolute inset-0 bg-cover bg-center"
+        style="background-image: url('{{ url_for('static', filename='image/campo/cosechando2.jpg') }}');">
+    </div>
+
+    <!-- CAPA OSCURA -->
+    <div class="absolute inset-0 bg-[#556B2F] opacity-50"></div>
+
+    <div class="flex items-center justify-center gap-10 relative z-10 text-white">
+
+        <!-- IZQUIERDA (TEXTO) -->
+        <div class="w-3/4 ml-16 pr-8 flex items-center justify-center min-h-[400px] self-center">
+            
+            <!-- TEXTO VERTICAL -->
+            <div class="mr-6 flex items-center justify-center">
+                <h2 class="text-white font-bold tracking-widest"
+                    style="writing-mode: vertical-rl; transform: rotate(180deg); font-size: 1.5rem;">
+                    NUESTRA HISTORIA
+                </h2>
+            </div>
+
+            <!-- TEXTO NORMAL -->
+            <div class="text-white text-sm leading-relaxed text-justify">
+                <p>
+                    Nuestra historia comienza hace más de una década, cuando un grupo de agricultores visionarios de Chincha, en Alto Larán, decidió unirse para enfrentar los desafíos del cultivo de paltas, como la falta de acceso a mercados, recursos limitados y técnicas tradicionales poco eficientes. Con esfuerzo, compromiso y trabajo en equipo, sentaron las bases de lo que hoy es una asociación sólida y organizada.
+                </p>
+                <br>
+                <p>
+                    A lo largo de los años, hemos crecido de manera constante, incorporando prácticas agrícolas sostenibles que cuidan el suelo y el agua, así como tecnologías innovadoras que mejoran la producción y garantizan altos estándares de calidad. Este proceso no solo nos ha permitido aumentar nuestra competitividad, sino también abrirnos camino en mercados de exportación.
+                </p>
+                <br>
+                <p>
+                    Hoy en día, nuestra asociación es un referente en la industria de la palta, reconocida por la excelencia de nuestros productos y por nuestro firme compromiso con el bienestar de nuestros agricultores, sus familias y el medio ambiente. Seguimos trabajando con la misma visión que nos unió desde el inicio: crecer juntos, de manera responsable y sostenible.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===== NUESTRO EQUIPO ===== -->
+<section class="bg-white py-16 text-center">
+
+    <!-- TÍTULO -->
+    <h2 class="text-[#556B2F] font-bold tracking-widest text-2xl mb-10 uppercase">
+        NUESTROS ASOCIADOS
+    </h2>
+
+    <!-- CONTENEDOR -->
+    <div class="relative max-w-6xl mx-auto flex items-center justify-center">
+
+        <!-- BOTÓN IZQUIERDA -->
+        <button onclick="prevSlide()"
+            class="absolute left-0 z-10 bg-[#556B2F] hover:bg-[#3d4f22] text-white px-3 py-2 rounded-full">
+            ◀
+        </button>
+
+        <!-- IMÁGENES -->
+        <div class="flex items-center gap-6">
+
+            <!-- IZQUIERDA -->
+            <img id="imgLeft"
+                class="w-72 h-60 object-cover object-center opacity-60 scale-95 transition-all duration-500 rounded-lg shadow-lg">
+
+            <!-- CENTRO -->
+            <img id="imgCenter"
+                class="w-[420px] h-72 object-cover object-center scale-110 transition-all duration-500 rounded-xl shadow-2xl">
+
+            <!-- DERECHA -->
+            <img id="imgRight"
+                class="w-72 h-60 object-cover object-center opacity-60 scale-95 transition-all duration-500 rounded-lg shadow-lg">
+
+        </div>
+
+        <!-- BOTÓN DERECHA -->
+        <button onclick="nextSlide()"
+            class="absolute right-0 z-10 bg-[#556B2F] hover:bg-[#3d4f22] text-white px-3 py-2 rounded-full">
+            ▶
+        </button>
+
+    </div>
+
+    <!-- FRASE -->
+        <p class="text-[#556B2F] font-bold text-lg mt-10 max-w-3xl mx-auto text-center">
+            Nuestros asociados son el pilar fundamental de nuestra asociación, unidos por el compromiso, el trabajo constante y la búsqueda de una agricultura de calidad.
+        </p>
+
+</section>
+
+<!-- ===== SCRIPT DEL CARRUSEL ===== -->
+<script>
+const images = [
+    // OFICINA / EQUIPO
+    "{{ url_for('static', filename='image/oficina/imagennueva1.jpeg') }}",
+    "{{ url_for('static', filename='image/oficina/imagennueva2.jpeg') }}",
+    "{{ url_for('static', filename='image/oficina/imagennueva3.jpeg') }}",
+    "{{ url_for('static', filename='image/otros/exportacion1.jpeg') }}",
+    "{{ url_for('static', filename='image/otros/exportacion2.jpeg') }}",
+
+    // ASOCIADOS
+    "{{ url_for('static', filename='image/asociados/1.jpeg') }}",
+    "{{ url_for('static', filename='image/asociados/2.jpeg') }}",
+    "{{ url_for('static', filename='image/asociados/3.jpeg') }}",
+    "{{ url_for('static', filename='image/asociados/4.jpeg') }}",
+    "{{ url_for('static', filename='image/asociados/9.jpeg') }}",
+    "{{ url_for('static', filename='image/asociados/10.jpeg') }}"
+];
+
+let current = 0;
+
+function updateCarousel() {
+    const left = (current - 1 + images.length) % images.length;
+    const right = (current + 1) % images.length;
+
+    document.getElementById("imgLeft").src = images[left];
+    document.getElementById("imgCenter").src = images[current];
+    document.getElementById("imgRight").src = images[right];
+}
+
+function nextSlide() {
+    current = (current + 1) % images.length;
+    updateCarousel();
+}
+
+function prevSlide() {
+    current = (current - 1 + images.length) % images.length;
+    updateCarousel();
+}
+
+/* INICIO + AUTOPLAY */
+window.onload = function () {
+    updateCarousel();
+    setInterval(nextSlide, 4000);
+};
+</script>
+
+
+
+<!-- ===== MISIÓN Y VISIÓN ===== -->
+<section class="relative py-20 flex items-center justify-center overflow-hidden">
+
+   <!-- IMAGEN DE FONDO -->
+   <div class="absolute inset-0 bg-cover bg-center"
+       style="background-image: url('{{ url_for('static', filename='image/capacitaciones/capacitacion15.jpeg') }}');">
+   </div>
+
+   <!-- CAPA OSCURA -->
+   <div class="absolute inset-0 bg-[#556B2F] opacity-50"></div>
+
+   <!-- CONTENIDO -->
+   <div class="relative z-10 max-w-6xl mx-auto px-8 text-white">
+
+       <!-- GRID DOS COLUMNAS -->
+       <div class="grid grid-cols-1 md:grid-cols-2 gap-14">
+
+           <!-- MISIÓN -->
+           <div>
+               <h3 data-i18n="mision" class="text-xl font-bold text-center mb-6">Misión</h3>
+               <p data-i18n="mision_texto" class="text-sm leading-relaxed text-justify">
+                   Nuestra misión es promover el cultivo sostenible de paltas, apoyando a nuestros agricultores con recursos, educación y acceso a mercados, para mejorar sus vidas y contribuir al desarrollo económico de nuestras comunidades.
+               </p>
+           </div>
+
+           <!-- VISIÓN -->
+           <div>
+               <h3 data-i18n="vision" class="text-xl font-bold text-center mb-6">Visión</h3>
+               <p data-i18n="vision_texto" class="text-sm leading-relaxed text-justify">
+                   Nuestra visión es ser líderes en la producción de paltas de alta calidad, reconocidos por nuestras prácticas agrícolas sostenibles y nuestro compromiso con el bienestar de nuestros agricultores y el medio ambiente.
+               </p>
+           </div>
+
+       </div>
+
+   </div>
+
+</section>
+
+<!-- ===== NUESTRAS REDES SOCIALES ===== -->
+<section class="py-8 bg-white text-center">
+    <h2 data-i18n="redes" class="text-2xl font-bold text-[#556B2F] mb-14 tracking-wide">
+        Nuestras redes sociales
+    </h2>
+    <div class="flex justify-center gap-28 flex-wrap">
+        <a href="#" class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/facebook.png') }}" 
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+        <a href="https://www.instagram.com/aaphalperu/?hl=es" target="_blank"
+           class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/instagram.png') }}" 
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+        <a href="https://www.tiktok.com/@aaphalperu" target="_blank"
+           class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/tiktok.png') }}" 
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+        <a href="https://www.youtube.com/@Asociaci%C3%B3ndeAgricultoresenHuam" target="_blank"
+           class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/youtube.png') }}" 
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+    </div>
+</section>
+
+{% endblock %}

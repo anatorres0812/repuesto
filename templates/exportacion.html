@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- ===== EXPORTACIÓN ===== -->
+<section class="py-24 bg-white">
+
+    <div class="max-w-6xl mx-auto px-8">
+
+        <!-- TÍTULO -->
+        <h2 class="text-3xl font-bold text-center text-[#556B2F] tracking-wide mb-10">
+            “Llevando la calidad de AAPHAL - Huamanpali a los mercados internacionales”
+        </h2>
+
+        <!-- CONTENIDO EN DOS COLUMNAS -->
+        <div style="display:flex; gap:30px; align-items:flex-start; flex-wrap:wrap;">
+
+            <!-- TEXTO (IZQUIERDA) -->
+            <div style="flex:1; min-width:300px;">
+                <p class="text-gray-700 text-lg leading-relaxed text-justify">
+                    La exportación de palta Hass es una actividad clave para nuestra asociación, ya que nos permite llevar un producto de alta calidad a mercados internacionales exigentes. Gracias a nuestras buenas prácticas agrícolas, control de calidad y trazabilidad, garantizamos que cada fruto cumpla con los estándares requeridos en cuanto a tamaño, madurez, sanidad y presentación.
+
+                    <br><br>
+
+                    Este proceso incluye una coordinación cuidadosa desde la cosecha, selección, empaque y almacenamiento, hasta su transporte, asegurando que la palta conserve su frescura y calidad durante todo el recorrido. Además, cumplimos con las normativas y certificaciones necesarias para ingresar a mercados internacionales, lo que fortalece nuestra competitividad.
+
+                    <br><br>
+
+                    La exportación no solo genera mayores ingresos para nuestros productores, sino que también impulsa el desarrollo económico de la asociación y la comunidad. De esta manera, logramos posicionarnos como un proveedor confiable, comprometido con la calidad, la sostenibilidad y la satisfacción de nuestros clientes en el mercado global.
+                </p>
+            </div>
+
+            <!-- VIDEO (DERECHA) -->
+            <div style="flex:1; min-width:300px; display:flex; justify-content:center;">
+                <video autoplay muted loop playsinline
+                       style="width:100%; max-width:450px; border-radius:12px;">
+                    <source src="{{ url_for('static', filename='gif_chatbot/exportacion.mp4') }}" type="video/mp4">
+                </video>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===== PROCESO DE EXPORTACIÓN ===== -->
+<section style="background:#f5f7f2; padding:80px 20px 50px 20px;">
+
+    <!-- TÍTULO -->
+    <h2 style="font-size:26px; font-weight:bold; color:#556B2F; text-align:center; margin-bottom:25px;">
+        Proceso de exportación de palta desde Huamanpali hacia mercados internacionales
+    </h2>
+
+    <!-- CONTENIDO -->
+    <div style="display:flex; justify-content:center;">
+
+        <div style="
+            max-width:950px;
+            width:100%;
+        ">
+
+            <img src="{{ url_for('static', filename='image/exportacion/proceso.png') }}"
+                 alt="Procesos de exportación"
+                 style="width:100%; border-radius:12px; display:block;">
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===== MAPA DE EXPORTACIÓN ===== -->
+<section class="py-20 bg-white">
+
+    <div class="text-center mb-10">
+        <h4 class="text-2xl font-bold text-[#556B2F]">
+            Desde Huamanpali hacia los mercados internacionales de exportación
+        </h4>
+    </div>
+
+<!-- VIDEO -->
+<div style="display:flex; justify-content:center; width:100%;">
+    <iframe
+        style="width:100%; max-width:900px; aspect-ratio:16/9; border:0;"
+        src="https://www.youtube.com/embed/-TyI7gpTiLA"
+        title="Video institucional de exportación de palta - AAPHAL"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+</div>
+
+<!-- ===== REDES SOCIALES ===== -->
+<section class="py-20 pb-5 bg-white text-center">
+
+    <h2 class="text-2xl font-bold text-[#556B2F] mb-14 tracking-wide">
+        Nuestras redes sociales
+    </h2>
+
+    <div class="flex justify-center gap-28 flex-wrap">
+
+        <a href="#" class="flex flex-col items-center group">
+
+            <img src="{{ url_for('static', filename='icons/facebook.png') }}"
+                class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">
+                AAPHALPERU
+            </p>
+
+        </a>
+
+        <a href="https://www.instagram.com/aaphalperu/?hl=es"
+            target="_blank"
+            class="flex flex-col items-center group">
+
+            <img src="{{ url_for('static', filename='icons/instagram.png') }}"
+                class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">
+                AAPHALPERU
+            </p>
+
+        </a>
+
+        <a href="https://www.tiktok.com/@aaphalperu"
+            target="_blank"
+            class="flex flex-col items-center group">
+
+            <img src="{{ url_for('static', filename='icons/tiktok.png') }}"
+                class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">
+                AAPHALPERU
+            </p>
+
+        </a>
+
+        <a href="https://www.youtube.com/@Asociaci%C3%B3ndeAgricultoresenHuam"
+            target="_blank"
+            class="flex flex-col items-center group">
+
+            <img src="{{ url_for('static', filename='icons/youtube.png') }}"
+                class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">
+                AAPHALPERU
+            </p>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+{% endblock %}
