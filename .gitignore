@@ -31,4 +31,10 @@ dist/
 build/
 
 # Logs
-*.log
+*.log.DS_Store
+.Trash/
+Downloads/
+Documents/
+Music/
+Pictures/
+Library/
