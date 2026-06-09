@@ -1,73 +1,108 @@
 // ===== CHATBOT AAPHAL =====
 
 const BASE_DE_CONOCIMIENTO = [
-    // GENERAL
-    { palabras: ["qué es", "que es", "aaphal", "asociacion", "asociación", "quienes son", "quiénes son"],
-      respuesta: "AAPHAL es la Asociación de Agricultores de Palta en Huamanpali - Alto Larán, ubicada en Chincha, Ica, Perú. Somos un grupo de agricultores dedicados al cultivo sostenible de palta Hass, comprometidos con la calidad y el desarrollo de nuestra comunidad." },
 
-    // UBICACIÓN
-    { palabras: ["donde", "dónde", "ubicacion", "ubicación", "direccion", "dirección", "lugar", "huamanpali", "chincha", "alto laran"],
-      respuesta: "Estamos ubicados en Huamanpali, distrito de Alto Larán, provincia de Chincha, departamento de Ica, Perú. Puedes visitarnos de lunes a viernes desde las 8:00am hasta las 5:00pm." },
+    // ===== SALUDO =====
+    {
+        palabras: ["hola", "buenos dias", "buenas", "hey", "hi", "hello", "saludos"],
+        respuesta: "¡Hola! Soy el asistente virtual de AAPHAL 🥑. Puedo ayudarte con información sobre la asociación, productos, exportaciones, ubicación, servicios y más. ¿Qué deseas saber?"
+    },
 
-    // CONTACTO
-    { palabras: ["contacto", "contactar", "correo", "email", "telefono", "teléfono", "comunicar", "escribir"],
-      respuesta: "Puedes contactarnos por correo a aaphalperu@gmail.com. También puedes encontrarnos en nuestras redes sociales como AAPHALPERU en Instagram, TikTok, Facebook y YouTube. Nuestro RUC es 20605371869." },
+    // ===== ¿QUÉ ES AAPHAL? =====
+    {
+        palabras: ["que es", "qué es", "aaphal", "asociacion", "asociación", "quienes son", "quiénes son", "de que trata", "de qué trata"],
+        respuesta: "AAPHAL es la Asociación de Agricultores de Palta en Huamanpali - Alto Larán (Chincha, Ica - Perú). Nos dedicamos al cultivo sostenible de palta Hass y al fortalecimiento de nuestros agricultores."
+    },
 
-    // PRODUCTOS
-    { palabras: ["producto", "palta", "variedad", "hass", "fuerte", "zutano", "cultivo"],
-      respuesta: "Producimos principalmente Palta Hass, la variedad más exportada del mundo, de piel rugosa y sabor intenso. También cultivamos Palta Fuerte, de piel verde y sabor delicado, y Palta Zutano, de gran tamaño y pulpa abundante." },
+    // ===== UBICACIÓN =====
+    {
+        palabras: ["donde", "dónde", "ubicacion", "ubicación", "direccion", "dirección", "lugar", "mapa", "como llegar", "cómo llegar", "huamanpali", "alto laran", "chincha"],
+        respuesta: "Nos encontramos en Huamanpali, distrito de Alto Larán, provincia de Chincha, región Ica - Perú. Atendemos de lunes a viernes de 8:00am a 5:00pm."
+    },
 
-    // EXPORTACIÓN
-    { palabras: ["exportacion", "exportación", "exportar", "mercado", "internacional", "paises", "países"],
-      respuesta: "Exportamos palta Hass a 4 países. Nuestro proceso incluye cosecha, selección, empaque, certificación y envío con cadena de frío garantizada. Producimos más de 60 toneladas anuales con un rendimiento de 7,200 kg por hectárea." },
+    // ===== CONTACTO =====
+    {
+        palabras: ["contacto", "contactar", "correo", "email", "telefono", "teléfono", "whatsapp", "escribir", "comunicar"],
+        respuesta: "Puedes contactarnos al correo aaphalperu@gmail.com. También estamos en redes sociales como @AAPHALPERU en Instagram, TikTok, Facebook y YouTube. Nuestro RUC es 20605371869."
+    },
 
-    // ESTADÍSTICAS
-    { palabras: ["cuantos", "cuántos", "asociados", "miembros", "socios", "numero", "número"],
-      respuesta: "AAPHAL cuenta con 27 asociados activos. Tenemos más de 10 años de experiencia en el cultivo de palta Hass y hemos realizado 10 exportaciones a mercados internacionales." },
+    // ===== PRODUCTOS =====
+    {
+        palabras: ["producto", "productos", "palta", "paltas", "variedad", "hass", "fuerte", "zutano", "cultivo"],
+        respuesta: "Producimos Palta Hass (la más exportada), Palta Fuerte (sabor suave) y Palta Zutano (gran tamaño y alta producción)."
+    },
 
-    // ALIANZAS
-    { palabras: ["alianza", "alianzas", "aliado", "partner", "agromercado", "senasa", "inia", "agroideas", "fondoperu", "valle grande"],
-      respuesta: "Nuestras alianzas estratégicas incluyen: AGROMERCADO, FONDO PERÚ, INIA (Instituto Nacional de Innovación Agraria), SENASA (Servicio Nacional de Sanidad Agraria), AGROIDEAS y VALLE GRANDE. Estas instituciones nos apoyan con capacitación, certificación y acceso a mercados." },
+    // ===== EXPORTACIÓN =====
+    {
+        palabras: ["exportacion", "exportación", "exportar", "mercado", "internacional", "paises", "países", "envio"],
+        respuesta: "Exportamos palta Hass a 4 países. El proceso incluye cosecha, selección, empaque, certificación y envío con cadena de frío. Producción aproximada: 60 toneladas anuales."
+    },
 
-    // BPA / CALIDAD
-    { palabras: ["bpa", "buenas practicas", "buenas prácticas", "calidad", "certificacion", "certificación", "trazabilidad"],
-      respuesta: "Implementamos Buenas Prácticas Agrícolas (BPA) que incluyen manejo sostenible del suelo y agua, control integrado de plagas, fertilización precisa y cosecha higiénica. También contamos con sistemas de trazabilidad y control de calidad para garantizar productos que cumplen estándares internacionales." },
+    // ===== ASOCIADOS =====
+    {
+        palabras: ["asociados", "socios", "miembros", "cuantos", "cuántos", "numero", "número"],
+        respuesta: "AAPHAL cuenta con 27 asociados activos y más de 10 años de experiencia en el cultivo de palta."
+    },
 
-    // SERVICIOS
-    { palabras: ["servicio", "servicios", "asesoria", "asesoría", "capacitacion", "capacitación", "apoyo"],
-      respuesta: "Ofrecemos asesoría técnica especializada en cultivo de palta Hass, capacitaciones agrícolas continuas con apoyo de SENASA, INIA y AGROIDEAS, y actividades de integración para nuestros asociados." },
+    // ===== ALIANZAS =====
+    {
+        palabras: ["alianza", "alianzas", "senasa", "inia", "agroideas", "valle grande", "agromercado", "fondo peru"],
+        respuesta: "Trabajamos con SENASA, INIA, AGROIDEAS, AGROMERCADO, FONDO PERÚ y VALLE GRANDE para mejorar la producción, certificación y capacitación."
+    },
 
-    // MISIÓN
-    { palabras: ["mision", "misión", "proposito", "propósito", "objetivo"],
-      respuesta: "Nuestra misión es promover el cultivo sostenible de paltas, apoyando a nuestros agricultores con recursos, educación y acceso a mercados, para mejorar sus vidas y contribuir al desarrollo económico de nuestras comunidades." },
+    // ===== CALIDAD / BPA =====
+    {
+        palabras: ["bpa", "buenas practicas", "calidad", "certificacion", "certificación", "trazabilidad"],
+        respuesta: "Aplicamos Buenas Prácticas Agrícolas (BPA), con control de plagas, manejo responsable del agua y suelo, y trazabilidad del producto desde el campo hasta la exportación."
+    },
 
-    // VISIÓN
-    { palabras: ["vision", "visión", "futuro", "meta"],
-      respuesta: "Nuestra visión es ser líderes en la producción de paltas de alta calidad, reconocidos por nuestras prácticas agrícolas sostenibles y nuestro compromiso con el bienestar de nuestros agricultores y el medio ambiente." },
+    // ===== SERVICIOS =====
+    {
+        palabras: ["servicio", "servicios", "asesoria", "asesoría", "capacitacion", "capacitación"],
+        respuesta: "Brindamos asesoría técnica en cultivo de palta, capacitaciones constantes y apoyo de instituciones como SENASA e INIA."
+    },
 
-    // VALORES
-    { palabras: ["valor", "valores", "principio", "principios"],
-      respuesta: "Nuestros valores son: Sostenibilidad (protegemos el medio ambiente), Calidad (producimos paltas de alta calidad), Integridad (actuamos con honestidad), Colaboración (trabajamos en equipo) e Innovación (mejoramos constantemente nuestras técnicas)." },
+    // ===== MISIÓN =====
+    {
+        palabras: ["mision", "misión", "objetivo", "proposito", "propósito"],
+        respuesta: "Nuestra misión es promover el cultivo sostenible de palta, apoyando a los agricultores con conocimiento, recursos y acceso a mercados."
+    },
 
-    // HISTORIA
-    { palabras: ["historia", "origen", "fundacion", "fundación", "cuando", "cuándo", "inicio", "inicio"],
-      respuesta: "AAPHAL nació hace más de 10 años cuando un grupo de agricultores visionarios de Chincha decidió unirse para enfrentar los desafíos del cultivo de paltas. Con esfuerzo y trabajo en equipo, construimos una asociación sólida que hoy es referente en la industria de la palta." },
+    // ===== VISIÓN =====
+    {
+        palabras: ["vision", "visión", "futuro", "meta"],
+        respuesta: "Ser una asociación líder en producción de palta de alta calidad, reconocida por su sostenibilidad y compromiso con los agricultores."
+    },
 
-    // FESTIVAL
-    { palabras: ["festival", "evento", "feria", "actividad", "28 mayo", "mayo"],
-      respuesta: "¡Próximo evento! III Festival de la Palta - Huamanpali 2026, el jueves 28 de mayo desde las 8:00am en la Plazuela Principal del Centro Poblado Huamanpali. Organizado por AAPHAL junto a DRA, Agencia Agraria Chincha y Dircetur." },
+    // ===== VALORES =====
+    {
+        palabras: ["valores", "valor", "principios"],
+        respuesta: "Nuestros valores son: sostenibilidad, calidad, integridad, colaboración e innovación."
+    },
 
-    // REDES SOCIALES
-    { palabras: ["redes", "instagram", "facebook", "tiktok", "youtube", "social"],
-      respuesta: "Síguenos en nuestras redes sociales como @AAPHALPERU: Instagram: instagram.com/aaphalperu, TikTok: tiktok.com/@aaphalperu, YouTube: youtube.com/@Asocia..." },
+    // ===== HISTORIA =====
+    {
+        palabras: ["historia", "origen", "fundacion", "fundación", "inicio"],
+        respuesta: "AAPHAL nació hace más de 10 años cuando agricultores de Chincha se unieron para mejorar el cultivo de palta Hass."
+    },
 
-    // SALUDO
-    { palabras: ["hola", "buenos", "buenas", "saludos", "hey", "hi", "hello"],
-      respuesta: "¡Hola! Soy el asistente virtual de AAPHAL 🥑. Puedo ayudarte con información sobre nuestra asociación, productos, exportaciones, alianzas, servicios y más. ¿En qué puedo ayudarte?" },
+    // ===== FESTIVAL =====
+    {
+        palabras: ["festival", "evento", "feria", "28 mayo", "mayo"],
+        respuesta: "III Festival de la Palta Huamanpali 2026: 28 de mayo desde las 8:00am en la Plazuela Principal de Huamanpali."
+    },
 
-    // GRACIAS
-    { palabras: ["gracias", "thank", "perfecto", "excelente", "genial"],
-      respuesta: "¡Con gusto! Si tienes más preguntas sobre AAPHAL, aquí estoy. 🥑" },
+    // ===== REDES =====
+    {
+        palabras: ["redes", "instagram", "facebook", "tiktok", "youtube"],
+        respuesta: "Síguenos como @AAPHALPERU en Instagram, TikTok, Facebook y YouTube."
+    },
+
+    // ===== GRACIAS =====
+    {
+        palabras: ["gracias", "thanks", "perfecto", "ok", "bien"],
+        respuesta: "¡Con gusto! Si necesitas más información, aquí estoy 🥑"
+    }
 ];
 
 function obtenerRespuesta(mensaje) {
