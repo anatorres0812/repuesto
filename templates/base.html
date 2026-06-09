@@ -160,17 +160,28 @@ document.addEventListener('DOMContentLoaded', aplicarNavResponsive);
                 aaphalperu@gmail.com
             </p>
 
-            <a href="#"
-                data-i18n="politicas"
-                class="block text-sm hover:text-yellow-300 mb-2">
-                Políticas
-            </a>
+                    <a href="javascript:void(0)"
+                    onclick="document.getElementById('modalImagen').style.display='flex';
+                                document.getElementById('modalImg').src='{{ url_for('static', filename='image/noticias/politicas.png') }}';"
+                    class="block text-sm hover:text-yellow-300 mb-2">
+                        Políticas
+                    </a>
 
-            <a href="#"
-                data-i18n="terminos"
-                class="block text-sm hover:text-yellow-300 mb-2">
-                Términos
-            </a>
+                    <a href="javascript:void(0)"
+                    onclick="document.getElementById('modalImagen').style.display='flex';
+                                document.getElementById('modalImg').src='{{ url_for('static', filename='image/noticias/terminos.png') }}';"
+                    class="block text-sm hover:text-yellow-300 mb-2">
+                        Términos y condiciones
+                    </a>
+
+                    <div id="modalImagen"
+                        onclick="this.style.display='none'"
+                        style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+                        background:rgba(0,0,0,0.8);justify-content:center;align-items:center;z-index:9999;">
+
+                        <img id="modalImg"
+                            style="max-width:85%;max-height:90vh;border-radius:10px;">
+                    </div>
 
             <a href="reclamaciones"
                 data-i18n="libro"
