@@ -8,11 +8,11 @@ app = Flask(__name__)
 def get_db_connection():
     try:
         conn = mysql.connector.connect(
-            host="127.0.0.1",
-            port=3308,
-            user="root",
-            password="123456",
-            database="aaphal_db"
+            host=os.environ.get("DB_HOST", "127.0.0.1"),
+            port=int(os.environ.get("DB_PORT", 3308)),
+            user=os.environ.get("DB_USER", "root"),
+            password=os.environ.get("DB_PASSWORD", "123456"),
+            database=os.environ.get("DB_NAME", "aaphal_db")
         )
         return conn
     except Exception as e:
