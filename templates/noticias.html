@@ -39,7 +39,8 @@
 <!-- ===== TARJETA (HORIZONTAL MÁS ALTA) ===== -->
 <section class="py-6 px-4 bg-white">
 
-    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 max-w-4xl mx-auto flex flex-col md:flex-row">
+    <div onclick="abrirModal('{{ url_for('static', filename='image/noticias/periodico1.jpg') }}')"
+         class="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 max-w-4xl mx-auto flex flex-col md:flex-row cursor-pointer">
 
         <!-- ===== IMAGEN ===== -->
         <div class="w-full md:w-1/2">
@@ -73,18 +74,60 @@
 
 </section>
 
-<!-- ===== TARJETA 2 (HORIZONTAL) ===== -->
+<!-- ===== MODAL ===== -->
+<div id="modalFicha"
+     style="
+        display:none;
+        position:fixed;
+        top:0;
+        left:0;
+        width:100vw;
+        height:100vh;
+        background:rgba(0,0,0,0.65);
+        z-index:9999;
+        justify-content:center;
+        align-items:center;
+     "
+     onclick="cerrarModal()">
+
+    <img id="imgFicha"
+         src=""
+         alt="Noticia"
+         onclick="event.stopPropagation()"
+         style="
+            max-width:85%;
+            max-height:90vh;
+            object-fit:contain;
+            border-radius:12px;
+            box-shadow:0 20px 40px rgba(0,0,0,.35);
+         ">
+
+</div>
+
+<!-- ===== JS ===== -->
+<script>
+function abrirModal(rutaImagen) {
+    document.getElementById("imgFicha").src = rutaImagen;
+    document.getElementById("modalFicha").style.display = "flex";
+}
+
+function cerrarModal() {
+    document.getElementById("modalFicha").style.display = "none";
+}
+</script>
+
+
+<!-- ===== TARJETA 2 ===== -->
 <section class="py-6 px-4 bg-white">
 
-    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 max-w-4xl mx-auto flex flex-col md:flex-row">
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden max-w-4xl mx-auto flex flex-col md:flex-row cursor-pointer"
+         onclick="document.getElementById('periodico2').style.display='flex'">
 
-        <!-- ===== IMAGEN ===== -->
         <div class="w-full md:w-1/2">
             <img src="{{ url_for('static', filename='image/noticias/noticias4.png') }}"
                  class="w-full h-72 md:h-full object-cover">
         </div>
 
-        <!-- ===== CONTENIDO ===== -->
         <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
 
             <div class="space-y-4">
@@ -99,28 +142,25 @@
 
             </div>
 
-            <div class="mt-6 text-xs text-gray-500 space-y-1">
+            <div class="mt-6 text-xs text-gray-500">
                 <p>📍 Ica</p>
             </div>
 
         </div>
-
     </div>
-
 </section>
 
-<!-- ===== TARJETA 3 (HORIZONTAL) ===== -->
+<!-- ===== TARJETA 3 ===== -->
 <section class="py-6 px-4 bg-white">
 
-    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 max-w-4xl mx-auto flex flex-col md:flex-row">
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden max-w-4xl mx-auto flex flex-col md:flex-row cursor-pointer"
+         onclick="document.getElementById('periodico3').style.display='flex'">
 
-        <!-- ===== IMAGEN ===== -->
         <div class="w-full md:w-1/2">
             <img src="{{ url_for('static', filename='image/noticias/noticias1.png') }}"
                  class="w-full h-72 md:h-full object-cover">
         </div>
 
-        <!-- ===== CONTENIDO ===== -->
         <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
 
             <div class="space-y-4">
@@ -135,28 +175,25 @@
 
             </div>
 
-            <div class="mt-6 text-xs text-gray-500 space-y-1">
+            <div class="mt-6 text-xs text-gray-500">
                 <p>📍 Ica</p>
             </div>
 
         </div>
-
     </div>
-
 </section>
 
-<!-- ===== TARJETA 4 (HORIZONTAL) ===== -->
+<!-- ===== TARJETA 4 ===== -->
 <section class="py-6 px-4 bg-white">
 
-    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 max-w-4xl mx-auto flex flex-col md:flex-row">
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden max-w-4xl mx-auto flex flex-col md:flex-row cursor-pointer"
+         onclick="document.getElementById('periodico4').style.display='flex'">
 
-        <!-- ===== IMAGEN ===== -->
         <div class="w-full md:w-1/2">
             <img src="{{ url_for('static', filename='image/noticias/noticias2.png') }}"
                  class="w-full h-72 md:h-full object-cover">
         </div>
 
-        <!-- ===== CONTENIDO ===== -->
         <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
 
             <div class="space-y-4">
@@ -166,20 +203,56 @@
                 </h3>
 
                 <p class="text-gray-600 text-sm leading-relaxed text-justify">
-                     En las oficinas de Agromercado Servicios Desconcentrados, representantes de AAPHAL recibieron un certificado oficial que reconoce el cumplimiento de estándares de calidad en la producción y comercialización de palta Hass, consolidando la alianza estratégica entre ambas organizaciones.
+                    En las oficinas de Agromercado Servicios Desconcentrados, representantes de AAPHAL recibieron un certificado oficial que reconoce el cumplimiento de estándares de calidad en la producción y comercialización de palta Hass.
                 </p>
 
             </div>
 
-            <div class="mt-6 text-xs text-gray-500 space-y-1">
+            <div class="mt-6 text-xs text-gray-500">
                 <p>📍 Ica</p>
             </div>
 
         </div>
-
     </div>
-
 </section>
+
+<!-- ===== PERIODICOS (OVERLAY) ===== -->
+
+<!-- PERIODICO 1 -->
+<div id="periodico1"
+     style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;"
+     onclick="this.style.display='none'">
+
+    <img src="{{ url_for('static', filename='image/noticias/periodico1.png') }}"
+         style="max-width:90%; max-height:90%; border-radius:10px;">
+</div>
+
+<!-- PERIODICO 2 -->
+<div id="periodico2"
+     style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;"
+     onclick="this.style.display='none'">
+
+    <img src="{{ url_for('static', filename='image/noticias/periodico2.png') }}"
+         style="max-width:90%; max-height:90%; border-radius:10px;">
+</div>
+
+<!-- PERIODICO 3 -->
+<div id="periodico3"
+     style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;"
+     onclick="this.style.display='none'">
+
+    <img src="{{ url_for('static', filename='image/noticias/periodico3.png') }}"
+         style="max-width:90%; max-height:90%; border-radius:10px;">
+</div>
+
+<!-- PERIODICO 4 -->
+<div id="periodico4"
+     style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;"
+     onclick="this.style.display='none'">
+
+    <img src="{{ url_for('static', filename='image/noticias/periodico4.png') }}"
+         style="max-width:90%; max-height:90%; border-radius:10px;">
+</div>
 
 <!-- ===== NUESTRAS REDES SOCIALES ===== -->
 <section class="py-8 bg-white text-center">
