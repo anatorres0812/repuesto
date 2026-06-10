@@ -133,7 +133,7 @@ def guardar_contacto():
 
         cursor = conn.cursor()
         cursor.execute(
-            "INSERT INTO contactos (nombre, correo, telefono, asunto, mensaje) VALUES (%s, %s, %s, %s, %s)",
+            "INSERT INTO CONTACT (nombre, correo, telefono, asunto, mensaje) VALUES (%s, %s, %s, %s, %s)",
             (nombre, correo, telefono, asunto, mensaje)
         )
         conn.commit()
@@ -161,7 +161,7 @@ def admin():
         return "Error de conexión a MySQL", 500
 
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM contactos ORDER BY fecha DESC")
+    cursor.execute("SELECT * FROM CONTACT ORDER BY fecha DESC")
     contactos = cursor.fetchall()
 
     cursor.close()
