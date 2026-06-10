@@ -268,51 +268,62 @@ small.valid{
 <!-- ===== JS VALIDACIONES ===== -->
 <script>
 
-function validarNombre(i){
-    i.value = i.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g,'')
-                     .replace(/\b\w/g,l=>l.toUpperCase());
-
-    document.getElementById("err_nombre").innerText =
-        i.value.length < 3 ? "Nombre inválido (solo letras)" : "";
-}
-
-function soloNumeros(i){
-    i.value = i.value.replace(/[^0-9]/g,'');
-}
-
-function validarCorreo(i){
-    i.value = i.value.toLowerCase();
-    let ok = /^[^\s@]+@[^\s@]+\.(com|edu\.pe)$/.test(i.value);
-
-    document.getElementById("err_correo").innerText =
-        ok ? "" : "Correo inválido (ej: correo@dominio.com)";
-}
-
-function contar(t,id){
-    document.getElementById(id).innerText = t.value.length + "/500";
-}
-
 function enviarReclamacion(e){
     e.preventDefault();
 
-    let nombre = rec_nombre.value.trim();
-    let doc = rec_num_doc.value;
-    let tel = rec_telefono.value;
+    console.log("🔥 ENVIÓ FORMULARIO");
+
+    let nombre = document.getElementById("rec_nombre").value.trim();
+    let doc = document.getElementById("rec_num_doc").value;
+    let tel = document.getElementById("rec_telefono").value;
 
     if(nombre.length < 3 || doc === "" || tel === ""){
         alert("Completa correctamente los campos");
         return;
     }
 
+    const btnEnviarRec = document.getElementById("btnEnviarRec");
     btnEnviarRec.disabled = true;
     btnEnviarRec.innerText = "Enviando...";
 
-    setTimeout(()=>{
-        document.getElementById("formReclamacion").reset();
-        recMensajeExito.style.display = "block";
+    const data = {
+        nombre_completo: document.getElementById("rec_nombre").value,
+        tipo_documento: document.getElementById("rec_tipo_doc").value,
+        numero_documento: document.getElementById("rec_num_doc").value,
+        correo: document.getElementById("rec_correo").value,
+        telefono: document.getElementById("rec_telefono").value,
+        asunto: document.getElementById("rec_tipo_bien").value,
+        tipo_reclamo: document.getElementById("rec_tipo_reclamo").value,
+        descripcion_problema: document.getElementById("rec_detalle").value,
+        solucion_esperada: document.getElementById("rec_solucion").value
+    };
+
+    fetch("/api/reclamaciones", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(resp => {
+        console.log("RESPUESTA:", resp);
+
+        if(resp.success){
+            document.getElementById("formReclamacion").reset();
+            document.getElementById("recMensajeExito").style.display = "block";
+        } else {
+            alert("Error: " + resp.message);
+        }
+    })
+    .catch(err => {
+        console.log("ERROR FETCH:", err);
+        alert("Error de conexión con el servidor");
+    })
+    .finally(() => {
         btnEnviarRec.disabled = false;
         btnEnviarRec.innerText = "ENVIAR RECLAMO";
-    },1000);
+    });
 }
 
 </script>

@@ -95,22 +95,53 @@ def reclamaciones():
 @app.route('/api/reclamaciones', methods=['POST'])
 def guardar_reclamacion():
     try:
-        data = request.get_json(force=True)
+        data = request.get_json()
+        print("🔥 DATA RECIBIDA:", data)
 
-        print("RECLAMACION RECIBIDA:", data)
+        conn = get_db_connection()
+        if not conn:
+            print("❌ ERROR CONEXIÓN MYSQL")
+            return jsonify({'success': False, 'message': 'Error MySQL'}), 500
 
-        return jsonify({
-            "success": True,
-            "message": "Reclamación recibida correctamente"
-        })
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            INSERT INTO CLAIM_BOOK (
+                nombre_completo,
+                tipo_documento,
+                numero_documento,
+                correo,
+                telefono,
+                asunto,
+                tipo_reclamo,
+                descripcion_problema,
+                solucion_esperada
+            )
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        """, (
+            data.get('nombre_completo'),
+            data.get('tipo_documento'),
+            data.get('numero_documento'),
+            data.get('correo'),
+            data.get('telefono'),
+            data.get('asunto'),
+            data.get('tipo_reclamo'),
+            data.get('descripcion_problema'),
+            data.get('solucion_esperada')
+        ))
+
+        conn.commit()
+
+        print("✅ INSERT OK")
+
+        cursor.close()
+        conn.close()
+
+        return jsonify({'success': True})
 
     except Exception as e:
-        print("ERROR RECLAMACION:", e)
-        return jsonify({
-            "success": False,
-            "message": str(e)
-        }), 500
-
+        print("💥 ERROR:", e)
+        return jsonify({'success': False, 'message': str(e)}), 500
 
 # ===== CONTACTO =====
 @app.route('/api/contacto', methods=['POST'])
@@ -144,31 +175,6 @@ def guardar_contacto():
 
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
-
-
-# ===== ADMIN =====
-ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'aaphal2024')
-
-@app.route('/admin')
-def admin():
-    password = request.args.get('key', '')
-
-    if password != ADMIN_PASSWORD:
-        return render_template('admin_login.html'), 401
-
-    conn = get_db_connection()
-    if not conn:
-        return "Error de conexión a MySQL", 500
-
-    cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM CONTACT ORDER BY fecha DESC")
-    contactos = cursor.fetchall()
-
-    cursor.close()
-    conn.close()
-
-    return render_template('admin_panel.html', contactos=contactos)
-
 
 # ===== RUN =====
 if __name__ == "__main__":
